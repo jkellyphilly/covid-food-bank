@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_26_220504) do
+ActiveRecord::Schema.define(version: 2020_05_26_221534) do
 
   create_table "comments", force: :cascade do |t|
     t.string "content"
@@ -36,6 +36,8 @@ ActiveRecord::Schema.define(version: 2020_05_26_220504) do
     t.string "status", default: "new"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "community_member_id"
+    t.integer "delivery_route_id"
   end
 
   create_table "delivery_routes", force: :cascade do |t|
