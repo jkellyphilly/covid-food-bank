@@ -1,0 +1,2 @@
+class DeliveryRoute < ApplicationRecord
+end
