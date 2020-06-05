@@ -13,13 +13,19 @@ class CommunityMembersController < ApplicationController
   end
 
   def create
+    @community_member = CommunityMember.create(member_params)
     binding.pry
+    redirect_to community_member_path(@community_member)
   end
 
   private
 
   def find_member
     @community_member = CommunityMember.find(params[:id])
+  end
+
+  def member_params
+    params.require(:community_member).permit(:name, :address, :phone_number, :email, :allergies, :password)
   end
 
 end
