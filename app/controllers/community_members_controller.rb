@@ -5,7 +5,15 @@ class CommunityMembersController < ApplicationController
     @community_members = CommunityMember.all
   end
 
+  def new
+    @community_member = CommunityMember.new
+  end
+
   def show
+  end
+
+  def create
+    binding.pry
   end
 
   private

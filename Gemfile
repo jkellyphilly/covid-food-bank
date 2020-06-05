@@ -24,6 +24,7 @@ gem 'jbuilder', '~> 2.7'
 
 # Use BCrypt for storing secure passwords
 gem 'bcrypt'
+gem 'pry'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
