@@ -1,4 +1,5 @@
 class CommunityMembersController < ApplicationController
+
   before_action :find_member, only: [:show]
 
   def index
@@ -15,7 +16,11 @@ class CommunityMembersController < ApplicationController
   def create
     @community_member = CommunityMember.create(member_params)
     binding.pry
-    redirect_to community_member_path(@community_member)
+    if @community_member.valid?
+      redirect_to community_member_path(@community_member)
+    else
+      render :'community_members/new'
+    end
   end
 
   private
