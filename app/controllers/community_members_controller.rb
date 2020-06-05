@@ -15,7 +15,6 @@ class CommunityMembersController < ApplicationController
 
   def create
     @community_member = CommunityMember.create(member_params)
-    binding.pry
     if @community_member.valid?
       redirect_to community_member_path(@community_member)
     else
@@ -30,7 +29,7 @@ class CommunityMembersController < ApplicationController
   end
 
   def member_params
-    params.require(:community_member).permit(:name, :address, :phone_number, :email, :allergies, :password)
+    params.require(:community_member).permit(:name, :address, :phone_number, :email, :allergies, :username, :password)
   end
 
 end
