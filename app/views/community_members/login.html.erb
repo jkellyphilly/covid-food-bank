@@ -1,0 +1,13 @@
+<h1>Welcome back, member!</h1>
+
+<h4>Log In</h4>
+
+<form action="/community-members/login" method="post">
+<label for="username">Username </label>
+<input type="text" name="username"> <br>
+<label for="password">Password </label>
+<input type="password" name="password"><br><br>
+<%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+<input type="hidden" name="user_type" value="community-members">
+<input type="submit" value="Log In">
+</form>

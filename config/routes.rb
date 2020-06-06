@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  get '/community-members/login', to: 'community_members#login'
+  post '/community-members/login', to: 'sessions#create'
+  get '/volunteers/login', to: 'volunteers#login'
+
   resources :community_members, path: "community-members", only: [:index, :new, :create, :show, :edit, :update]
 
-  get '/community-members/login', to: 'sessions#new'
   get '/logout', to: 'sessions#destroy'
 end

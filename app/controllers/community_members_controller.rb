@@ -37,6 +37,9 @@ class CommunityMembersController < ApplicationController
     end
   end
 
+  def login
+  end
+
   private
 
   def find_member
