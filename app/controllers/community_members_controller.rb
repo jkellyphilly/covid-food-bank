@@ -1,6 +1,6 @@
 class CommunityMembersController < ApplicationController
 
-  before_action :find_member, only: [:show]
+  before_action :find_member, only: [:show, :edit, :update]
 
   def index
     @community_members = CommunityMember.all
@@ -14,6 +14,15 @@ class CommunityMembersController < ApplicationController
   end
 
   def edit
+  end
+
+  def update
+    @community_member.update(member_params)
+    if @community_member.valid?
+      redirect_to community_member_path(@community_member)
+    else
+      render :"community_members/edit"
+    end
   end
 
   def create
