@@ -1,1 +1,14 @@
 <h1><%=@community_member.name %></h1>
+
+<h4>Username: <%=@community_member.username%></h4>
+
+<h2>Contact Info</h2>
+<ul>
+  <li>Address: <%=@community_member.address%></li>
+  <li>Email: <%=@community_member.email%></li>
+  <li>Phone number: <%=@community_member.phone_number%></li>
+  <li>Allergies: <%=@community_member.allergies%></li>
+</ul>
+<br>
+
+<%= includeEditOption(@community_member) %>

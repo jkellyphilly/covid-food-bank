@@ -13,6 +13,9 @@ class CommunityMembersController < ApplicationController
   def show
   end
 
+  def edit
+  end
+
   def create
     @community_member = CommunityMember.create(member_params)
     if @community_member.valid?

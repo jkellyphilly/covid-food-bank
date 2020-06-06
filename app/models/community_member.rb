@@ -7,4 +7,10 @@ class CommunityMember < ApplicationRecord
 
   validates :name, :address, :email, :phone_number, :username, presence: true
   validates :username, uniqueness: true
+  # TODO: set up a validation for the phone number
+
+  # TODO: set this up after setting up proper Sessions logic
+  def isLoggedIn
+    true
+  end
 end
