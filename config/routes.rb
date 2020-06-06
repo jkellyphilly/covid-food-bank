@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   resources :community_members, path: "community-members", only: [:index, :new, :create, :show, :edit, :update]
 
   get '/community-members/login', to: 'sessions#new'
+  get '/logout', to: 'sessions#destroy'
 end

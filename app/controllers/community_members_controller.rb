@@ -10,28 +10,30 @@ class CommunityMembersController < ApplicationController
     @community_member = CommunityMember.new
   end
 
+  def create
+    @community_member = CommunityMember.create(member_params)
+    if @community_member.valid?
+      session[:username] = @community_member.username
+      session[:user_type] = "community_member"
+      redirect_to community_member_path(@community_member)
+    else
+      render :'community_members/new'
+    end
+  end
+
   def show
+    binding.pry
   end
 
   def edit
   end
 
   def update
-    binding.pry
     @community_member.update(member_params)
     if @community_member.valid?
       redirect_to community_member_path(@community_member)
     else
       render :"community_members/edit"
-    end
-  end
-
-  def create
-    @community_member = CommunityMember.create(member_params)
-    if @community_member.valid?
-      redirect_to community_member_path(@community_member)
-    else
-      render :'community_members/new'
     end
   end
 
