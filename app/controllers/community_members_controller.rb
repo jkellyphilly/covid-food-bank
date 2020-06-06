@@ -17,6 +17,7 @@ class CommunityMembersController < ApplicationController
   end
 
   def update
+    binding.pry
     @community_member.update(member_params)
     if @community_member.valid?
       redirect_to community_member_path(@community_member)

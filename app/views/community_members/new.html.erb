@@ -1,33 +1,9 @@
 <h1>Sign up to be a member of our community!</h1>
 
 <% if @community_member.errors.any? %>
-  <div id="error_explanation">
-    <h3><%= pluralize(@community_member.errors.count, "error") %> prohibited this action from occurring:</h3>
-    <ul>
-      <% @community_member.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-    </ul>
-  </div>
+  <%= render partial: "error_fields", locals: {user: @community_member} %>
 <% end %>
 
 <div id="new_community_member_form">
-  <%= form_for @community_member do |f| %>
-    <%= f.label :name %>
-    <%= f.text_field :name %><br>
-    <%= f.label :address %>
-    <%= f.text_field :address %><br>
-    <%= f.label :phone_number %>
-    <%= f.text_field :phone_number %><br>
-    <%= f.label :email %>
-    <%= f.text_field :email %><br>
-    <%= f.label :allergies %>
-    <%= f.text_field :allergies %><br>
-    <%= f.label :username %>
-    <%= f.text_field :username %><br>
-    <%= f.label :password %>
-    <%= f.password_field :password %><br>
-    <%# <%= f.password_field :password_confirmation %>
-    <%= f.submit %>
-  <% end %>
+  <%= render partial: "info_form", locals: {user: @community_member} %>
 </div>

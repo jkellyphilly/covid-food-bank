@@ -1,0 +1,20 @@
+<%= form_for user do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %><br>
+  <%= f.label :address %>
+  <%= f.text_field :address %><br>
+  <%= f.label :phone_number %>
+  <%= f.text_field :phone_number %><br>
+  <%= f.label :email %>
+  <%= f.text_field :email %><br>
+  <% if user.class == CommunityMember %>
+    <%= f.label :allergies %>
+    <%= f.text_field :allergies %><br>
+  <% end %>
+  <br>
+  <%= f.label :username %>
+  <%= f.text_field :username %><br>
+  <%= f.label :password %>
+  <%= f.password_field :password %><br>
+  <%= f.submit %>
+<% end %>
