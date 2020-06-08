@@ -1,6 +1,6 @@
 module CommunityMembersHelper
 
-  def includeEditOption(member)
+  def includeEditOptionMember(member)
     if member.isLoggedIn(session)
       render partial: "helpers/edit_profile", locals: {type: 'community-members', user_id: member.id}
     end
