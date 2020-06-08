@@ -1,12 +1,13 @@
 <h1>Welcome to the community.</h1>
 
 <h2>Deliveries: </h2>
-<ul>
-  <% @pending_delivery_requests.each do |dr| %>
+<% @pending_delivery_requests.each do |dr| %>
+  <%= printDeliveryTitle(dr) %>
+  <ul>
     <li>Member requesting: <%= link_to dr.community_member.name, community_member_path(dr.community_member) %></li>
     <li>Requested items: <%= dr.items %></li>
     <li>Requested delivery date: <%= dr.requested_date %></li>
     <li>Status: <%= dr.status %></li>
-    <br><br>
-  <% end %>
-</ul>
+  </ul>
+  <br>
+<% end %>
