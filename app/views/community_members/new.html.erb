@@ -1,9 +1,9 @@
 <h1>Sign up to be a member of our community!</h1>
 
 <% if @community_member.errors.any? %>
-  <%= render partial: "error_fields", locals: {user: @community_member} %>
+  <%= render partial: "helpers/error_fields", locals: {user: @community_member} %>
 <% end %>
 
 <div id="new_community_member_form">
-  <%= render partial: "info_form", locals: {user: @community_member} %>
+  <%= render partial: "helpers/info_form", locals: {user: @community_member} %>
 </div>
