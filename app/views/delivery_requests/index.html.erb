@@ -1,3 +1,6 @@
+<h1>Welcome to the community.</h1>
+
+<h2>Deliveries: </h2>
 <ul>
   <% @delivery_requests.each do |dr| %>
     <li>Member requesting: <%= link_to dr.community_member.name, community_member_path(dr.community_member) %></li>

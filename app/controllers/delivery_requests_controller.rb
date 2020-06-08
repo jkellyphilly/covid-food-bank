@@ -18,7 +18,6 @@ class DeliveryRequestsController < ApplicationController
     # so we have to define the association here
     @delivery_request.associateMember(session)
 
-    binding.pry
     if @delivery_request.valid?
       redirect_to delivery_request_path(@delivery_request)
     else
@@ -42,7 +41,7 @@ class DeliveryRequestsController < ApplicationController
 
   def require_member_login
     # TODO: add flash message saying you must be logged in as a member
-    redirect_to '/delivery-requests' unless (session.include? :user_id && session[:user_type] == 'community-members')
+    redirect_to '/delivery-requests' unless (session.include?(:user_id) && (session[:user_type] == "community-members"))
   end
 
 end
