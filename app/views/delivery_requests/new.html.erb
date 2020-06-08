@@ -1,0 +1,13 @@
+<h1>New delivery request</h1>
+
+<% if @delivery_request.errors.any? %>
+  <%= render partial: "helpers/error_fields", locals: {object: @delivery_request} %>
+<% end %>
+
+<%= form_for @delivery_request do |f| %>
+  <%= f.label "What do you need?"%>
+  <%= f.text_field :items %> <br>
+  <%= f.label "When would you like this delivered?" %>
+  <%= f.text_field :requested_date %> <br>
+  <%= f.submit %>
+<% end %>
