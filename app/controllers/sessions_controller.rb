@@ -7,11 +7,17 @@ class SessionsController < ApplicationController
       if @community_member && @community_member.authenticate(params[:password])
         session[:username] = @community_member.username
         session[:user_type] = 'community-members'
+        redirect_to community_member_path(@community_member)
       else
         # TODO: define error state
+        # Incorrect username or password given
+        binding.pry
       end
-    else
+    elsif params[:user_type] == "volunteers"
+      # check to see here what the other param types might be
       binding.pry
+    else
+      # what's the else condition here?
     end
   end
 
