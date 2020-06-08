@@ -51,7 +51,10 @@ class VolunteersController < ApplicationController
   end
 
   def require_current_volunteer
-
+    unless ((session[:user_type] == 'volunteers') && (session[:user_id] == @volunteer.id))
+      # TODO: add in flash error message
+      redirect_to volunteer_path(@volunteer)
+    end
   end
 
 end
