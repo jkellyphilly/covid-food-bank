@@ -13,4 +13,12 @@ class CommunityMember < ApplicationRecord
   def isLoggedIn(session)
     session[:user_id] == self.id && session[:user_type] == 'community-members' ? true : false
   end
+
+  def pending_delivery_requests
+    self.delivery_requests.select {|dr| dr.status == "new"}
+  end
+
+  def confirmed_delivery_requests
+    self.delivery_requests.select {|dr| dr.status == "confirmed"}
+  end
 end

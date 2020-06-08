@@ -7,7 +7,10 @@ Rails.application.routes.draw do
   get '/volunteers/login', to: 'volunteers#login'
   post '/volunteers/login', to: 'sessions#create'
 
-  resources :community_members, path: "community-members"
+  resources :community_members, path: 'community-members' do
+    resources :delivery_requests, only: [:index]
+  end
+
   resources :volunteers
   resources :delivery_requests, path: "delivery-requests"
 

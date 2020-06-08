@@ -4,7 +4,13 @@ class DeliveryRequestsController < ApplicationController
   before_action :require_member_login, only: [:new]
 
   def index
-    @delivery_requests = DeliveryRequest.all
+    if params[:community_member_id]
+      @pending_delivery_requests = CommunityMember.find(params[:community_member_id]).pending_delivery_requests
+      @confirmed_delivery_requests = CommunityMember.find(params[:community_member_id]).confirmed_delivery_requests
+    else
+      @pending_delivery_requests = DeliveryRequest.pending
+      @confirmed_delivery_requests = DeliveryRequest.confirmed
+    end
   end
 
   def new

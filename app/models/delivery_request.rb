@@ -7,6 +7,10 @@ class DeliveryRequest < ApplicationRecord
   validates :items, :requested_date, presence: true
   # TODO: create custom validation for date input
 
+  scope :pending, -> { where(status: "new") }
+  scope :confirmed, -> { where(status: "confirmed") }
+  # TODO: create a "confirmed" scope action
+
   def associateMember(session)
     if (session[:user_type] == 'community-members')
       member = CommunityMember.find(session[:user_id])
