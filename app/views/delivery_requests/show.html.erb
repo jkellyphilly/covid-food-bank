@@ -2,8 +2,16 @@
 
 <h3>Requested by: <%=link_to @delivery_request.community_member.name, community_member_path(@delivery_request.community_member) %></h3>
 <h3>Delivery Request Status: <%=@delivery_request.status%></h3>
-<h3>Details</h3>
+<h3>Request Details</h3>
 <ul>
   <li>Items: <%= @delivery_request.items %></li>
   <li>Requested date for delivery: <%= @delivery_request.requested_date%></li>
 </ul>
+
+<% if @delivery_request.delivery_route %>
+  <h3>Route details</h3>
+  <ul>
+    <li>Route ID #<%=@delivery_request.delivery_route.id%></li>
+    <li>Volunteer: <%=link_to @delivery_request.volunteer_name, volunteer_path(@delivery_request.volunteer)%></li>
+  </ul>
+<% end %>

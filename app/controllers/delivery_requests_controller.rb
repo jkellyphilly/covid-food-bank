@@ -1,5 +1,7 @@
 class DeliveryRequestsController < ApplicationController
   before_action :find_request, only: [:show, :edit, :update]
+  before_action :require_login, except: [:new]
+  before_action :require_member_login, only: [:new]
 
   def index
     @delivery_requests = DeliveryRequest.all
@@ -32,6 +34,15 @@ class DeliveryRequestsController < ApplicationController
 
   def find_request
     @delivery_request = DeliveryRequest.find(params[:id])
+  end
+
+  def require_login
+    redirect_to '/' unless session.include? :user_id
+  end
+
+  def require_member_login
+    # TODO: add flash message saying you must be logged in as a member
+    redirect_to '/delivery-requests' unless (session.include? :user_id && session[:user_type] == 'community-members')
   end
 
 end

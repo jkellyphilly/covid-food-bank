@@ -5,12 +5,21 @@ class DeliveryRequest < ApplicationRecord
   has_many :comments
 
   validates :items, :requested_date, presence: true
+  # TODO: create custom validation for date input
 
   def associateMember(session)
     if (session[:user_type] == 'community-members')
       member = CommunityMember.find(session[:user_id])
       member.delivery_requests << self
-      member.save 
+      member.save
     end
+  end
+
+  def volunteer_name
+    self.delivery_route.volunteer.name
+  end
+
+  def volunteer
+    self.delivery_route.volunteer
   end
 end
