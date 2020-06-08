@@ -14,7 +14,7 @@ class CommunityMembersController < ApplicationController
     @community_member = CommunityMember.create(member_params)
     if @community_member.valid?
       session[:username] = @community_member.username
-      session[:user_type] = "community_member"
+      session[:user_type] = 'community-members'
       redirect_to community_member_path(@community_member)
     else
       render :'community_members/new'
@@ -22,7 +22,6 @@ class CommunityMembersController < ApplicationController
   end
 
   def show
-    binding.pry
   end
 
   def edit
