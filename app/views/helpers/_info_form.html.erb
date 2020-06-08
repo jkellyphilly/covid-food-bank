@@ -1,8 +1,10 @@
 <%= form_for user do |f| %>
   <%= f.label :name %>
   <%= f.text_field :name %><br>
-  <%= f.label :address %>
-  <%= f.text_field :address %><br>
+  <% if user.class == CommunityMember %>
+    <%= f.label :address %>
+    <%= f.text_field :address %><br>
+  <% end %>
   <%= f.label :phone_number %>
   <%= f.text_field :phone_number %><br>
   <%= f.label :email %>

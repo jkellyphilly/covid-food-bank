@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get '/community-members/login', to: 'community_members#login'
   post '/community-members/login', to: 'sessions#create'
   get '/volunteers/login', to: 'volunteers#login'
+  post '/volunteers/login', to: 'sessions#create'
 
   resources :community_members, path: "community-members"
   resources :volunteers

@@ -14,8 +14,17 @@ class SessionsController < ApplicationController
         binding.pry
       end
     elsif params[:user_type] == "volunteers"
-      # check to see here what the other param types might be
-      binding.pry
+      @volunteer = Volunteer.find_by(username: params[:username])
+      if @volunteer && @volunteer.authenticate(params[:password])
+        session[:username] = @volunteer.username
+        session[:user_type] = 'volunteers'
+        binding.pry
+        redirect_to volunteer_path(@volunteer)
+      else
+        # TODO: define error state
+        # Incorrect username or password given
+        binding.pry
+      end
     else
       # what's the else condition here?
     end
