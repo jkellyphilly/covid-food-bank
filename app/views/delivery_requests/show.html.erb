@@ -1,0 +1,9 @@
+<h1>Delivery ID #<%=@delivery_request.id%></h1>
+
+<h3>Requested by: <%=link_to @delivery_request.community_member.name, community_member_path(@delivery_request.community_member) %></h3>
+<h3>Delivery Request Status: <%=@delivery_request.status%></h3>
+<h3>Details</h3>
+<ul>
+  <li>Items: <%= @delivery_request.items %></li>
+  <li>Requested date for delivery: <%= @delivery_request.requested_date%></li>
+</ul>
