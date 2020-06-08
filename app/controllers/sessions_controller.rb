@@ -31,7 +31,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session.delete :username
+    session.delete :user_id
     session.delete :user_type
     redirect_to '/'
   end
