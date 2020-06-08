@@ -19,4 +19,10 @@ module DeliveryRequestsHelper
     end
   end
 
+  def includeSignUpOption(dr)
+    if(session[:user_type] == 'volunteers')
+      render partial: 'volunteer_sign_up', locals: {dr_id: dr.id}
+    end
+  end
+
 end
