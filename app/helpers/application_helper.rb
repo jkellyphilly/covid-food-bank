@@ -15,10 +15,9 @@ module ApplicationHelper
     end
   end
 
+  # TODO: should this be in this Helper?
   def showEditOptionDelivery(dr)
-    binding.pry
     if dr.isValidForEdit(session[:user_type], session[:user_id])
-      binding.pry
       render partial: 'edit_delivery_details', locals: {dr_id: dr.id}
     end
   end

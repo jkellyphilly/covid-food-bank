@@ -33,7 +33,14 @@ class DeliveryRequestsController < ApplicationController
   end
 
   def show
-    # binding.pry
+  end
+
+  def edit
+    unless @delivery_request.isValidForEdit(session[:user_type], session[:user_id])
+      # TODO: add a flash message saying that you can only edit
+      # if it's your request AND it's within certain parameters
+      redirect_to delivery_request_path(@delivery_request)
+    end
   end
 
   def volunteer
