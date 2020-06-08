@@ -9,8 +9,7 @@ class Volunteer < ApplicationRecord
   validates :username, uniqueness: true
   # TODO: set up a validation for the phone number
 
-  # TODO: update this to be specific for the instance of the volunteer
   def isLoggedIn(session)
-    session[:username] == self.username && session[:user_type] == 'volunteers' ? true : false
+    session[:user_id] == self.id && session[:user_type] == 'volunteers' ? true : false
   end
 end

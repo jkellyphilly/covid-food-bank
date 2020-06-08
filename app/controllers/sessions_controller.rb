@@ -1,11 +1,11 @@
 class SessionsController < ApplicationController
 
   def create
-    binding.pry
+    # binding.pry
     if params[:user_type] == "community-members"
       @community_member = CommunityMember.find_by(username: params[:username])
       if @community_member && @community_member.authenticate(params[:password])
-        session[:username] = @community_member.username
+        session[:user_id] = @community_member.id
         session[:user_type] = 'community-members'
         redirect_to community_member_path(@community_member)
       else
@@ -16,9 +16,9 @@ class SessionsController < ApplicationController
     elsif params[:user_type] == "volunteers"
       @volunteer = Volunteer.find_by(username: params[:username])
       if @volunteer && @volunteer.authenticate(params[:password])
-        session[:username] = @volunteer.username
+        session[:user_id] = @volunteer.id
         session[:user_type] = 'volunteers'
-        binding.pry
+        # binding.pry
         redirect_to volunteer_path(@volunteer)
       else
         # TODO: define error state

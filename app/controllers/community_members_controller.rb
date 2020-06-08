@@ -13,7 +13,7 @@ class CommunityMembersController < ApplicationController
   def create
     @community_member = CommunityMember.create(member_params)
     if @community_member.valid?
-      session[:username] = @community_member.username
+      session[:user_id] = @community_member.id
       session[:user_type] = 'community-members'
       redirect_to community_member_path(@community_member)
     else

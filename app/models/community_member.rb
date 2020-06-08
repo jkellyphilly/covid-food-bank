@@ -9,8 +9,7 @@ class CommunityMember < ApplicationRecord
   validates :username, uniqueness: true
   # TODO: set up a validation for the phone number
 
-  # TODO: set this up after setting up proper Sessions logic
   def isLoggedIn(session)
-    session[:username] == self.username && session[:user_type] == 'community-members' ? true : false
+    session[:user_id] == self.id && session[:user_type] == 'community-members' ? true : false
   end
 end

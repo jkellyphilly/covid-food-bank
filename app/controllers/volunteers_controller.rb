@@ -13,7 +13,7 @@ class VolunteersController < ApplicationController
   def create
     @volunteer = Volunteer.create(volunteer_params)
     if @volunteer.valid?
-      session[:username] = @volunteer.username
+      session[:user_id] = @volunteer.id
       session[:user_type] = 'volunteers'
       redirect_to volunteer_path(@volunteer)
     else
