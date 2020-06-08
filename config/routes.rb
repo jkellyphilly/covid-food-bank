@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   post '/community-members/login', to: 'sessions#create'
   get '/volunteers/login', to: 'volunteers#login'
   post '/volunteers/login', to: 'sessions#create'
+  get '/delivery-requests/:id/volunteer', to: 'delivery_requests#volunteer'
 
   resources :community_members, path: 'community-members' do
     resources :delivery_requests, path: 'delivery-requests', only: [:index, :show, :new]

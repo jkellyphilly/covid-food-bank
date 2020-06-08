@@ -8,24 +8,19 @@ module ApplicationHelper
     end
   end
 
+  # TODO: should this be in this Helper?
   def includeSignUpOption(dr)
     if(session[:user_type] == 'volunteers')
       render partial: 'volunteer_sign_up', locals: {dr_id: dr.id}
     end
   end
 
-  # def newDeliveryRequestWording
-  #   if (@community_member)
-  #     render partial: 'new_delivery_wording', locals: {
-  #       addressee: @community_member.name,
-  #       path: new_community_member_delivery_request_path(@community_member)
-  #     }
-  #   else
-  #     render partial: 'new_delivery_wording', locals: {
-  #       addressee: "Community members",
-  #       path: new_delivery_request_path
-  #     }
-  #   end
-  # end
+  def showEditOptionDelivery(dr)
+    binding.pry
+    if dr.isValidForEdit(session[:user_type], session[:user_id])
+      binding.pry
+      render partial: 'edit_delivery_details', locals: {dr_id: dr.id}
+    end
+  end
 
 end
