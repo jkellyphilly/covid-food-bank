@@ -1,6 +1,7 @@
 class CommunityMembersController < ApplicationController
 
   before_action :find_member, only: [:show, :edit, :update]
+  before_action :require_current_member, only: [:edit]
 
   def index
     @community_members = CommunityMember.all
@@ -48,6 +49,13 @@ class CommunityMembersController < ApplicationController
 
   def member_params
     params.require(:community_member).permit(:name, :address, :phone_number, :email, :allergies, :username, :password)
+  end
+
+  def require_current_member
+    unless ((session[:user_type] == 'community-members') && (session[:user_id] == @community_member.id))
+      # TODO: add in flash error message
+      redirect_to community_member_path(@community_member)
+    end
   end
 
 end
