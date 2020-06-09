@@ -31,6 +31,10 @@ class DeliveryRequest < ApplicationRecord
     self.delivery_route.volunteer
   end
 
+  def delivery_route_size
+    self.delivery_route.delivery_requests.size
+  end
+
   def matchesCurrentMember(user_type, current_member_id)
     (user_type == 'community-members') && (self.community_member.id == current_member_id)
   end
@@ -53,14 +57,13 @@ class DeliveryRequest < ApplicationRecord
       if self.status != "confirmed"
         # TODO: error. There can't be a jump from new status to completed.
       else
-        # TODO: combine this whole statement into one line
-        volunteer = Volunteer.find(vol_id)
-
         # Either find a route that has the date, or create a new one
-        volunteer.find_or_create_new_route(self)
+        Volunteer.find(vol_id).find_or_create_new_route(self)
       end
     elsif prev_status == "confirmed"
       if self.status == "new"
+        self.delivery_route.destroy if (self.delivery_route_size == 1)
+
         self.delivery_route_id = nil
         self.save
       end
