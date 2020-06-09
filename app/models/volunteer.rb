@@ -24,4 +24,12 @@ class Volunteer < ApplicationRecord
       new_route
     end
   end
+
+  def upcoming_delivery_routes
+    self.delivery_routes.select {|dr| dr.status == "new"}
+  end
+
+  def completed_delivery_routes
+    self.delivery_routes.select {|dr| dr.status == "completed"}
+  end
 end

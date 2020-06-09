@@ -1,0 +1,20 @@
+<h1>Delivery Routes</h1>
+<p><%=link_to "Find more requests to help with!", delivery_requests_path %></p>
+
+<h2>Upcoming routes: </h2>
+<ul>
+  <% @upcoming_routes.each do |route| %>
+    <li><%= link_to "Route ID \##{route.id}", volunteer_delivery_route_path(@volunteer, route) %></li>
+    <li>Route date: <%=route.estimated_delivery_date%></li>
+    <br>
+  <% end %>
+</ul>
+
+<h2>Completed routes: </h2>
+<ul>
+  <% @completed_routes.each do |route| %>
+    <li><%= link_to "Route ID \##{route.id}", volunteer_delivery_route_path(@volunteer, route) %></li>
+    <li>Completed on: <%=route.estimated_delivery_date%></li>
+    <br>
+  <% end %>
+</ul>
