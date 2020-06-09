@@ -18,5 +18,7 @@ NEXT - THIS
 * Make it so that a volunteer can EITHER mark an entire route as complete (which will automatically mark every delivery in that route as complete)... or you can do it manually, too
   - because, I think for confirmed->completed, it's just updating the value of the status... nothing else, because the route is already defined (and thus the volunteer)
 
+* Check out the volunteer's routes index page (seems to be not working)
+
 THEN - THIS
 * Add in flash error messaging so that I at least know that what I'm doing is working w/ error states

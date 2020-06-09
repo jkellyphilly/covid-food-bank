@@ -1,6 +1,6 @@
 class DeliveryRoutesController < ApplicationController
 
-  before_action :get_route, only: [:show, :edit, :update]
+  before_action :get_route, only: [:show, :edit, :update, :destroy]
   before_action :get_volunteer
   # TODO: add a list of items per route (since the volunteer will need to buy it all?)
 
@@ -18,11 +18,18 @@ class DeliveryRoutesController < ApplicationController
   def update
     @delivery_route.update(status: params[:status])
     if @delivery_route.valid?
-      @delivery_route.updateAllStatuses
+      @delivery_route.updateAllStatuses(@delivery_route.status)
       redirect_to volunteer_delivery_route_path(@volunteer, @delivery_route)
     else
       binding.pry
     end
+  end
+
+  def destroy
+    @delivery_route.updateAllStatuses("new")
+    @delivery_route.destroy
+    # TODO: add a message about deleting the route
+    redirect_to volunteer_path(@volunteer)
   end
 
   private

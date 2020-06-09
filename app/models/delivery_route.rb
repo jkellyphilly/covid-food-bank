@@ -8,11 +8,19 @@ class DeliveryRoute < ApplicationRecord
     (self.volunteer_id == session[:user_id]) && (session[:user_type] == 'volunteers')
   end
 
-  def updateAllStatuses
+  def updateAllStatuses(new_status)
     self.delivery_requests.each do |dreq|
-      dreq.status = self.status
+      dreq.status = new_status
+      if new_status == "new"
+        dreq.delivery_route_id = nil
+      end
+
       dreq.save
     end
+  end
+
+  def isValidForDeletion
+    self.status != "completed"
   end
 
 end

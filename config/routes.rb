@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   end
 
   resources :volunteers do
-    resources :delivery_routes, path: 'delivery-routes', only: [:index, :show, :edit, :update]
+    resources :delivery_routes, path: 'delivery-routes', only: [:index, :show, :edit, :update, :destroy]
   end
 
   resources :delivery_requests, path: "delivery-requests"

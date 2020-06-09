@@ -6,4 +6,10 @@ module DeliveryRoutesHelper
     end
   end
 
+  def includeDeleteOptionRoute(route)
+    if (route.belongsToCurrentVolunteer(session) && route.isValidForDeletion)
+      render partial: "delete_route", locals: {vol: route.volunteer, route: route}
+    end
+  end
+
 end

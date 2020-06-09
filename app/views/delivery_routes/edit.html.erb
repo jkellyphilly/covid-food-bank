@@ -5,11 +5,14 @@
 <%= form_tag volunteer_delivery_route_path(@volunteer, @delivery_route) do %>
   <input id="hidden" type="hidden" name="_method" value="patch">
   <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-  <%= radio_button_tag 'status', 'new' %>
-  <label for="status_new">Mark this route as pending (not yet completed)</label>
+  <%= radio_button_tag 'status', 'confirmed' %>
+  <label for="status_confirmed">Mark this route as pending (not yet completed)</label>
   <br>
   <%= radio_button_tag 'status', 'completed' %>
   <label for="status_completed">Mark this route and all its deliveries as completed</label>
   <br>
   <%= submit_tag "Update Route" %>
 <% end %>
+
+<br><br>
+<%= includeDeleteOptionRoute(@delivery_route) %>
