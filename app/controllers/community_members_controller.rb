@@ -16,6 +16,7 @@ class CommunityMembersController < ApplicationController
     if @community_member.valid?
       session[:user_id] = @community_member.id
       session[:user_type] = 'community-members'
+      session[:message] = "Successfully created volunteer profile. Welcome, #{@community_member.name}!"
       redirect_to community_member_path(@community_member)
     else
       render :'community_members/new'
@@ -23,7 +24,6 @@ class CommunityMembersController < ApplicationController
   end
 
   def show
-    # binding.pry
   end
 
   def edit
@@ -32,6 +32,7 @@ class CommunityMembersController < ApplicationController
   def update
     @community_member.update(member_params)
     if @community_member.valid?
+      session[:message] = "Successfully updated your profile."
       redirect_to community_member_path(@community_member)
     else
       render :"community_members/edit"
@@ -53,7 +54,7 @@ class CommunityMembersController < ApplicationController
 
   def require_current_member
     unless ((session[:user_type] == 'community-members') && (session[:user_id] == @community_member.id))
-      # TODO: add in flash error message
+      session[:message] = "Error: You can only edit your own profile."
       redirect_to community_member_path(@community_member)
     end
   end

@@ -32,7 +32,7 @@ class VolunteersController < ApplicationController
   def update
     @volunteer.update(volunteer_params)
     if @volunteer.valid?
-      session[:message] = "Successfully updated volunteer profile."
+      session[:message] = "Successfully updated your profile."
       redirect_to volunteer_path(@volunteer)
     else
       render :"volunteers/edit"
@@ -54,7 +54,7 @@ class VolunteersController < ApplicationController
 
   def require_current_volunteer
     unless ((session[:user_type] == 'volunteers') && (session[:user_id] == @volunteer.id))
-      # TODO: add in flash error message
+      session[:message] = "Error: you can only edit your own profile."
       redirect_to volunteer_path(@volunteer)
     end
   end
