@@ -10,8 +10,11 @@ TODO's
 
 3. Build comment-functionality; comments are on DeliveryRequest pages ONLY
 
-4. Ensure that users can only edit their own profiles
+4. DONE - Ensure that users can only edit their own profiles
 
 5. Create custom data validation for date input (will be used for both delivery requests and delivery routes)
 
 6. Update the CM and Volunteer "directories" to actually have some content on them
+
+7. Make it so that a volunteer can EITHER mark an entire route as complete (which will automatically mark every delivery in that route as complete)... or you can do it manually, too
+  - because, I think for confirmed->completed, it's just updating the value of the status... nothing else, because the route is already defined (and thus the volunteer)

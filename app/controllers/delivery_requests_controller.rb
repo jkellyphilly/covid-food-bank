@@ -21,11 +21,10 @@ class DeliveryRequestsController < ApplicationController
   def create
     @delivery_request = DeliveryRequest.create(request_params)
 
-    # We can't use a hidden field to draw out the member,
-    # so we have to define the association here
-    @delivery_request.associateMember(session)
-
     if @delivery_request.valid?
+      # Create member association for this delivery request
+      @delivery_request.associateMember(session)
+
       redirect_to delivery_request_path(@delivery_request)
     else
       render :'delivery_requests/new'

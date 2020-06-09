@@ -1,11 +1,12 @@
 class DeliveryRequest < ApplicationRecord
 
-  belongs_to :community_member
+  belongs_to :community_member, optional: true
   belongs_to :delivery_route, optional: true
   has_many :comments
 
+  include ActiveModel::Validations
+  validates_with DateValidator
   validates :items, :requested_date, presence: true
-  # TODO: create custom validation for date input
 
   scope :pending, -> { where(status: "new") }
   scope :confirmed, -> { where(status: "confirmed") }
