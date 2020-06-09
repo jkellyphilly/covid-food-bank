@@ -9,4 +9,13 @@
 </ul>
 <br>
 
+<h2>Upcoming Routes</h2>
+<ul>
+  <% @volunteer.delivery_routes.each do |route| %>
+    <li>Route ID #<%=route.id%></li>
+    <li>Estimated date of delivery: <%=route.estimated_delivery_date%></li>
+    <br>
+  <% end %>
+</ul>
+
 <%= includeEditOptionVolunteer(@volunteer) %>
