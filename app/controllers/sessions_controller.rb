@@ -1,7 +1,6 @@
 class SessionsController < ApplicationController
 
   def create
-    # binding.pry
     if params[:user_type] == "community-members"
       @community_member = CommunityMember.find_by(username: params[:username])
       if @community_member && @community_member.authenticate(params[:password])
@@ -18,7 +17,6 @@ class SessionsController < ApplicationController
       if @volunteer && @volunteer.authenticate(params[:password])
         session[:user_id] = @volunteer.id
         session[:user_type] = 'volunteers'
-        # binding.pry
         redirect_to volunteer_path(@volunteer)
       else
         # TODO: define error state
@@ -26,7 +24,8 @@ class SessionsController < ApplicationController
         binding.pry
       end
     else
-      # what's the else condition here?
+      session[:message] = "Invalid login type occurred. Please try again."
+      redirect_to "/"
     end
   end
 

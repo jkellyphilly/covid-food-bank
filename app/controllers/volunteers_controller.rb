@@ -1,5 +1,6 @@
 class VolunteersController < ApplicationController
 
+  before_action :require_login, except: [:login, :new]
   before_action :find_volunteer, only: [:show, :edit, :update]
   before_action :require_current_volunteer, only: [:edit]
 
@@ -43,6 +44,11 @@ class VolunteersController < ApplicationController
   end
 
   private
+
+  def require_login
+    session[:message] = "Error: You must be logged in to view information about our Community. Join us!"
+    redirect_to '/' unless session.include? :user_id
+  end
 
   def find_volunteer
     @volunteer = Volunteer.find(params[:id])

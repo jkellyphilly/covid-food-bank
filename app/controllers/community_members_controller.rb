@@ -1,5 +1,6 @@
 class CommunityMembersController < ApplicationController
 
+  before_action :require_login, except: [:login, :new]
   before_action :find_member, only: [:show, :edit, :update]
   before_action :require_current_member, only: [:edit]
 
@@ -43,6 +44,11 @@ class CommunityMembersController < ApplicationController
   end
 
   private
+
+  def require_login
+    session[:message] = "Error: You must be logged in to view information about our Community. Join us!"
+    redirect_to '/' unless session.include? :user_id
+  end
 
   def find_member
     @community_member = CommunityMember.find(params[:id])

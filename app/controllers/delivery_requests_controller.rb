@@ -1,7 +1,8 @@
 class DeliveryRequestsController < ApplicationController
-  before_action :find_request, only: [:show, :edit, :update, :volunteer]
+
   before_action :require_login, except: [:new]
   before_action :require_member_login, only: [:new]
+  before_action :find_request, only: [:show, :edit, :update, :volunteer]
   before_action :require_edit_scenario, only: [:edit]
 
   def index

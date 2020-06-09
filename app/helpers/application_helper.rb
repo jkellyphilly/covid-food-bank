@@ -25,7 +25,7 @@ module ApplicationHelper
   def includeFlashMessage
     if(session[:message])
       render partial: "helpers/flash_message", locals: { message: session[:message] }
-      session.delete :message
+      session.delete(:message)
     end
   end
 

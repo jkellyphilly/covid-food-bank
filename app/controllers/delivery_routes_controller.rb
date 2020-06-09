@@ -1,7 +1,9 @@
 class DeliveryRoutesController < ApplicationController
 
+  before_action :require_login
   before_action :get_route, only: [:show, :edit, :update, :destroy]
   before_action :get_volunteer
+  before_action :require_current_volunteer, only: [:edit]
   # TODO: add a list of items per route (since the volunteer will need to buy it all?)
 
   def show
@@ -28,11 +30,16 @@ class DeliveryRoutesController < ApplicationController
   def destroy
     @delivery_route.updateAllStatuses("new")
     @delivery_route.destroy
-    # TODO: add a message about deleting the route
+    session[:message] = "Route has been deleted from your profile."
     redirect_to volunteer_path(@volunteer)
   end
 
   private
+
+  def require_login
+    session[:message] = "Error: You must be logged in to view information about our Community. Join us!"
+    redirect_to '/' unless session.include? :user_id
+  end
 
   def get_route
     @delivery_route = DeliveryRoute.find(params[:id])
@@ -40,6 +47,13 @@ class DeliveryRoutesController < ApplicationController
 
   def get_volunteer
     @volunteer = Volunteer.find(params[:volunteer_id])
+  end
+
+  def require_current_volunteer
+    unless((@volunteer.id == session[:user_id]) && (session[:user_type] == 'volunteers'))
+      session[:message] = "You can only edit details of your own route."
+      redirect_to volunteer_delivery_route_path(@volunteer, @delivery_route)
+    end
   end
 
 end
