@@ -21,4 +21,8 @@ class CommunityMember < ApplicationRecord
   def confirmed_delivery_requests
     self.delivery_requests.select {|dr| dr.status == "confirmed"}
   end
+
+  def completed_delivery_requests
+    self.delivery_requests.select {|dr| dr.status == "completed"}
+  end
 end

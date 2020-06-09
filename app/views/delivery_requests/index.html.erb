@@ -24,3 +24,15 @@
     <li>Route: <%= link_to "Route \##{dr.delivery_route.id}", volunteer_delivery_route_path(dr.volunteer, dr.delivery_route) %></li>
   </ul>
 <% end %>
+
+<h2>Completed Deliveries: </h2>
+<% @completed_delivery_requests.each do |dr| %>
+  <%= printDeliveryTitle(dr) %>
+  <ul>
+    <li>Member requesting: <%= link_to dr.community_member.name, community_member_path(dr.community_member) %></li>
+    <li>Requested items: <%= dr.items %></li>
+    <li>Requested delivery date: <%= dr.requested_date %></li>
+    <li>Volunteer: <%= link_to dr.volunteer_name, volunteer_path(dr.volunteer) %></li>
+    <li>Route: <%= link_to "Route \##{dr.delivery_route.id}", volunteer_delivery_route_path(dr.volunteer, dr.delivery_route) %></li>
+  </ul>
+<% end %>

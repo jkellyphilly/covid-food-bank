@@ -8,9 +8,11 @@ class DeliveryRequestsController < ApplicationController
       @community_member = CommunityMember.find(params[:community_member_id])
       @pending_delivery_requests = @community_member.pending_delivery_requests
       @confirmed_delivery_requests = @community_member.confirmed_delivery_requests
+      @completed_delivery_requests = @community_member.completed_delivery_requests
     else
       @pending_delivery_requests = DeliveryRequest.pending
       @confirmed_delivery_requests = DeliveryRequest.confirmed
+      @completed_delivery_requests = DeliveryRequest.completed
     end
   end
 

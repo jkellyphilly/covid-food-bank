@@ -10,7 +10,7 @@ class DeliveryRequest < ApplicationRecord
 
   scope :pending, -> { where(status: "new") }
   scope :confirmed, -> { where(status: "confirmed") }
-  # TODO: create a "confirmed" scope action
+  scope :completed, -> { where(status: "completed") }
   # TODO: split confirmed into both "vol_confirmed" and "confirmed"
   # TODO: create a custom validation for saving the different statuses?
 
