@@ -43,6 +43,15 @@ class DeliveryRequestsController < ApplicationController
     end
   end
 
+  def update
+    @delivery_request.update(request_params)
+    if @delivery_request.valid?
+      redirect_to delivery_request_path(@delivery_request)
+    else
+      render :"delivery_requests/edit"
+    end
+  end
+
   def volunteer
   end
 

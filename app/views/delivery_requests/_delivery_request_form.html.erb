@@ -1,0 +1,7 @@
+<%= form_for dr do |f| %>
+  <%= f.label "What do you need?"%>
+  <%= f.text_field :items %> <br>
+  <%= f.label "When would you like this delivered?" %>
+  <%= f.text_field :requested_date %> <br>
+  <%= f.submit %>
+<% end %>
