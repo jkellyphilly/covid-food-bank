@@ -41,7 +41,7 @@ class DeliveryRequest < ApplicationRecord
   end
 
   def statusIsValidForEdit
-    (self.status == "new") || (self.status == "confirmed")
+    self.status == "new"
   end
 
   def isValidForEdit(user_type, current_member_id)
@@ -50,7 +50,6 @@ class DeliveryRequest < ApplicationRecord
 
   def matchesCurrentVolunteer
     session[:user_type] == 'volunteers' && self.volunteer.id == session[:user_id]
-    binding.pry
   end
 
   def update_status(prev_status, vol_id)
