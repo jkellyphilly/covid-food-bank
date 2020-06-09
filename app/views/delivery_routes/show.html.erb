@@ -1,5 +1,10 @@
 <h1>Route ID #<%=@delivery_route.id%></h1>
 
+<h3>Shopping list for this route: </h3>
+<ul>
+  <p>Put the list of all items in the route here</p>
+</ul>
+
 <h2>Delivery Requests along this route: </h2>
 <ul>
   <% @delivery_route.delivery_requests.each do |dreq| %>

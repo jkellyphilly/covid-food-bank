@@ -10,9 +10,7 @@ TODO's
 
 3. Build comment-functionality; comments are on DeliveryRequest pages ONLY
 
-4. DONE - Ensure that users can only edit their own profiles
-
-5. Create custom data validation for date input (will be used for both delivery requests and delivery routes)
+* Make a method to get a full list (hash) of items with their "count", then print that out on the route 
 
 6. Update the CM and Volunteer "directories" to actually have some content on them
 
