@@ -48,7 +48,6 @@ class DeliveryRequestsController < ApplicationController
       previous_status = @delivery_request.status
     end
 
-    binding.pry
     @delivery_request.update(request_params)
     if @delivery_request.valid?
       if(previous_status)

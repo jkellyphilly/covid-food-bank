@@ -11,6 +11,9 @@ class DeliveryRequest < ApplicationRecord
   scope :confirmed, -> { where(status: "confirmed") }
   # TODO: create a "confirmed" scope action
   # TODO: split confirmed into both "vol_confirmed" and "confirmed"
+  # TODO: create a custom validation for saving the different statuses?
+
+  # TODO: add in a "change delivery status" option on the VIEW side (show)
 
   def associateMember(session)
     if (session[:user_type] == 'community-members')
@@ -50,10 +53,16 @@ class DeliveryRequest < ApplicationRecord
       if self.status != "confirmed"
         # TODO: error. There can't be a jump from new status to completed.
       else
+        # TODO: combine this whole statement into one line
         volunteer = Volunteer.find(vol_id)
 
         # Either find a route that has the date, or create a new one
-        route = volunteer.find_or_create_new_route(self)
+        volunteer.find_or_create_new_route(self)
+      end
+    elsif prev_status == "confirmed"
+      if self.status == "new"
+        self.delivery_route_id = nil
+        self.save
       end
     end
   end
