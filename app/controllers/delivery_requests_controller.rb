@@ -2,6 +2,7 @@ class DeliveryRequestsController < ApplicationController
   before_action :find_request, only: [:show, :edit, :update, :volunteer]
   before_action :require_login, except: [:new]
   before_action :require_member_login, only: [:new]
+  before_action :require_edit_scenario, only: [:edit]
 
   def index
     if params[:community_member_id]
@@ -27,6 +28,7 @@ class DeliveryRequestsController < ApplicationController
       # Create member association for this delivery request
       @delivery_request.associateMember(session)
 
+      session[:message] = "Way to go, #{@delivery_request.community_member.name}! Your request is now in our system and will be picked up by a volunteer."
       redirect_to delivery_request_path(@delivery_request)
     else
       render :'delivery_requests/new'
@@ -37,14 +39,10 @@ class DeliveryRequestsController < ApplicationController
   end
 
   def edit
-    unless @delivery_request.isValidForEdit(session[:user_type], session[:user_id])
-      # TODO: add a flash message saying that you can only edit
-      # if it's your request AND it's within certain parameters
-      redirect_to delivery_request_path(@delivery_request)
-    end
   end
 
   def update
+    # TODO: clean up the logic here
     if(params[:delivery_request][:status])
       previous_status = @delivery_request.status
     end
@@ -75,11 +73,19 @@ class DeliveryRequestsController < ApplicationController
   end
 
   def require_login
+    session[:message] = "Error: You must be logged in to view information about our Community. Join us!"
     redirect_to '/' unless session.include? :user_id
   end
 
+  def require_edit_scenario
+    unless @delivery_request.isValidForEdit(session[:user_type], session[:user_id])
+      session[:message] = "Error: You can only edit your own delivery requests before they are confirmed by a volunteer."
+      redirect_to delivery_request_path(@delivery_request)
+    end
+  end
+
   def require_member_login
-    # TODO: add flash message saying you must be logged in as a member
+    session[:message] = "Error: You must be logged in as a community member to create a new delivery request."
     redirect_to '/delivery-requests' unless (session.include?(:user_id) && (session[:user_type] == "community-members"))
   end
 
