@@ -1,0 +1,14 @@
+<h1>Edit the status of this route</h1>
+
+<h2><%= link_to "Route ID \##{@delivery_route.id}", volunteer_delivery_route_path(@volunteer, @delivery_route)%></h2>
+
+<%= form_tag volunteer_delivery_route_path(@volunteer, @delivery_route) do %>
+  <input id="hidden" type="hidden" name="_method" value="patch">
+  <%= radio_button_tag 'status', 'new' %>
+  <label for="status_new">Mark this route as pending (not yet completed)</label>
+  <br>
+  <%= radio_button_tag 'status', 'completed' %>
+  <label for="status_completed">Mark this route and all its deliveries as completed</label>
+  <br>
+  <%= submit_tag "Update Route" %>
+<% end %>

@@ -1,6 +1,6 @@
 class DeliveryRoutesController < ApplicationController
 
-  before_action :get_route, only: [:show, :edit]
+  before_action :get_route, only: [:show, :edit, :update]
   before_action :get_volunteer
   # TODO: add a list of items per route (since the volunteer will need to buy it all?)
 
@@ -13,7 +13,15 @@ class DeliveryRoutesController < ApplicationController
   end
 
   def edit
-    binding.pry
+  end
+
+  def update
+    @delivery_route.update(status: params[:status])
+    if @delivery_route.valid?
+      redirect_to volunteer_delivery_route_path(@volunteer, @delivery_route)
+    else
+      binding.pry
+    end
   end
 
   private
