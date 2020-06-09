@@ -1,6 +1,6 @@
 <h1><%=@volunteer.name %></h1>
 
-<h4>Username: <%=@volunteer.username%></h4>
+<h2>Username: <%=@volunteer.username%></h2>
 
 <h2>Contact Info</h2>
 <ul>
@@ -12,7 +12,7 @@
 <h2>Upcoming Routes</h2>
 <ul>
   <% @volunteer.delivery_routes.each do |route| %>
-    <li>Route ID #<%=route.id%></li>
+    <li><%= link_to "Route ID \##{route.id}", volunteer_delivery_route_path(@volunteer, route) %></li>
     <li>Estimated date of delivery: <%=route.estimated_delivery_date%></li>
     <br>
   <% end %>
