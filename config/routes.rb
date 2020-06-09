@@ -13,9 +13,9 @@ Rails.application.routes.draw do
   end
 
   resources :volunteers do
-    resources :delivery_routes, path: 'delivery-routes', only: [:index, :show]
+    resources :delivery_routes, path: 'delivery-routes', only: [:index, :show, :edit]
   end
-  
+
   resources :delivery_requests, path: "delivery-requests"
 
   get '/logout', to: 'sessions#destroy'
