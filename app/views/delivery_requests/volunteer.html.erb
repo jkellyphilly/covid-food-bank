@@ -7,3 +7,13 @@
   <li>Items: <%= @delivery_request.items %></li>
   <li>Requested date for delivery: <%= @delivery_request.requested_date%></li>
 </ul>
+
+<%= form_for @delivery_request do |f| %>
+  <%= f.radio_button :status, 'new' %>
+  <%= f.label :status_new, 'Mark this delivery as new (not confirmed)' %>
+  <br>
+  <%= f.radio_button :status, 'confirmed' %>
+  <%= f.label :status_confirmed, 'Mark this delivery as confirmed' %>
+  <br>
+  <%= f.submit %>
+<% end %>

@@ -12,4 +12,16 @@ class Volunteer < ApplicationRecord
   def isLoggedIn(session)
     session[:user_id] == self.id && session[:user_type] == 'volunteers' ? true : false
   end
+
+  def find_or_create_new_route(delivery_request)
+    existing = self.delivery_routes.find {|rt| rt.estimated_delivery_date == delivery_request.requested_date}
+    if existing
+      existing.delivery_requests << delivery_request
+      existing
+    else
+      new_route = DeliveryRoute.create(estimated_delivery_date: delivery_request.requested_date, volunteer_id: self.id)
+      new_route.delivery_requests << delivery_request
+      new_route
+    end
+  end
 end

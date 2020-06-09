@@ -44,8 +44,17 @@ class DeliveryRequestsController < ApplicationController
   end
 
   def update
+    if(params[:delivery_request][:status])
+      previous_status = @delivery_request.status
+    end
+
+    binding.pry
     @delivery_request.update(request_params)
     if @delivery_request.valid?
+      if(previous_status)
+        @delivery_request.update_status(previous_status, session[:user_id])
+      end
+
       redirect_to delivery_request_path(@delivery_request)
     else
       render :"delivery_requests/edit"
@@ -58,7 +67,7 @@ class DeliveryRequestsController < ApplicationController
   private
 
   def request_params
-    params.require(:delivery_request).permit(:items, :requested_date)
+    params.require(:delivery_request).permit(:items, :requested_date, :status)
   end
 
   def find_request

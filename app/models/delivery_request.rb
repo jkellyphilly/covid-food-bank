@@ -45,4 +45,17 @@ class DeliveryRequest < ApplicationRecord
     binding.pry
   end
 
+  def update_status(prev_status, vol_id)
+    if prev_status == "new"
+      if self.status != "confirmed"
+        # TODO: error. There can't be a jump from new status to completed.
+      else
+        volunteer = Volunteer.find(vol_id)
+
+        # Either find a route that has the date, or create a new one
+        route = volunteer.find_or_create_new_route(self)
+      end
+    end
+  end
+
 end
