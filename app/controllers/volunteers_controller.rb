@@ -16,6 +16,7 @@ class VolunteersController < ApplicationController
     if @volunteer.valid?
       session[:user_id] = @volunteer.id
       session[:user_type] = 'volunteers'
+      session[:message] = "Successfully created volunteer profile. Welcome, #{@volunteer.name}!"
       redirect_to volunteer_path(@volunteer)
     else
       render :'volunteers/new'
@@ -31,6 +32,7 @@ class VolunteersController < ApplicationController
   def update
     @volunteer.update(volunteer_params)
     if @volunteer.valid?
+      session[:message] = "Successfully updated volunteer profile."
       redirect_to volunteer_path(@volunteer)
     else
       render :"volunteers/edit"

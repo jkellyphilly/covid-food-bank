@@ -6,7 +6,5 @@ TODO's
 
 * Update the CM and Volunteer "directories" to actually have some content on them
 
-* Check out the volunteer's routes index page (seems to be not working)
-
 THEN - THIS
 * Add in flash error messaging so that I at least know that what I'm doing is working w/ error states
