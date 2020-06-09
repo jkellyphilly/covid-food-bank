@@ -1,0 +1,11 @@
+<h1>Delivery ID #<%=@delivery_route.id%></h1>
+
+<h2>Delivery Requests along this route: </h2>
+<ul>
+  <% @delivery_route.delivery_requests.each do |dreq| %>
+    <li><%=link_to "Delivery Request ID \##{dreq.id}", delivery_request_path(dreq)%></li>
+    <li>For: <%=link_to dreq.community_member.name, community_member_path(dreq.community_member)%></li>
+    <li>Address: <%=dreq.community_member.address%></li>
+    <br>
+  <% end %>
+</ul>
