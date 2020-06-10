@@ -20,6 +20,12 @@ module DeliveryRequestsHelper
     end
   end
 
+  def include_sign_up_option(dr)
+    if(session[:user_type] == 'volunteers')
+      render partial: 'volunteer_sign_up', locals: {dr_id: dr.id}
+    end
+  end
+
   def show_edit_option_delivery(dr)
     if dr.is_valid_for_edit(session[:user_type], session[:user_id])
       render partial: 'edit_delivery_details', locals: {dr_id: dr.id}

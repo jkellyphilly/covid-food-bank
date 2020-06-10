@@ -37,6 +37,10 @@ class DeliveryRequestsController < ApplicationController
   end
 
   def show
+    if(params[:community_member_id])
+      @community_member = CommunityMember.find(params[:community_member_id])
+    end
+
     @new_comment = Comment.new
   end
 

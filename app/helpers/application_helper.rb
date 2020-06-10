@@ -8,13 +8,6 @@ module ApplicationHelper
     end
   end
 
-  # TODO: should this be in this Helper?
-  def includeSignUpOption(dr)
-    if(session[:user_type] == 'volunteers')
-      render partial: 'volunteer_sign_up', locals: {dr_id: dr.id}
-    end
-  end
-
   def include_banner
     if(session[:user_id])
       render partial: "helpers/banner", locals: { user_type: session[:user_type], user_id: session[:user_id] }

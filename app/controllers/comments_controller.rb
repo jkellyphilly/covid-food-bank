@@ -16,7 +16,11 @@ class CommentsController < ApplicationController
       comment.save
     end
 
-    redirect_to delivery_request_path(@delivery_request)
+    if (params[:community_member_id])
+      redirect_to community_member_delivery_request_path(@delivery_request.community_member, @delivery_request)
+    else
+      redirect_to delivery_request_path(@delivery_request)
+    end
   end
 
 end
