@@ -11,10 +11,6 @@ class DeliveryRequest < ApplicationRecord
   scope :pending, -> { where(status: "new") }
   scope :confirmed, -> { where(status: "confirmed") }
   scope :completed, -> { where(status: "completed") }
-  # TODO: split confirmed into both "vol_confirmed" and "confirmed"
-  # TODO: create a custom validation for saving the different statuses?
-
-  # TODO: add in a "change delivery status" option on the VIEW side (show)
 
   def associateMember(session)
     if (session[:user_type] == 'community-members')
