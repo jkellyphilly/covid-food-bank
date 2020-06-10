@@ -44,7 +44,11 @@ class DeliveryRequest < ApplicationRecord
     self.matchesCurrentMember(user_type, current_member_id) && self.statusIsValidForEdit
   end
 
-  def matchesCurrentVolunteer
+  def is_valid_for_volunteer(session)
+    !self.delivery_route || self.matches_current_volunteer(session)
+  end
+
+  def matches_current_volunteer(session)
     session[:user_type] == 'volunteers' && self.volunteer.id == session[:user_id]
   end
 

@@ -5,6 +5,7 @@ module DeliveryRequestsHelper
   #   binding.pry
   # end
 
+  # TODO: rename this to camel_case
   def newDeliveryRequestWording
     if (@community_member)
       render partial: 'new_delivery_wording', locals: {
@@ -19,10 +20,16 @@ module DeliveryRequestsHelper
     end
   end
 
-  # def showEditOptionDelivery(dr)
-  #   if dr.isValidForEdit
-  #     render partial: 'edit_delivery_details', locals: {dr_id: dr.id}
-  #   end
-  # end
+  def show_edit_option_delivery(dr)
+    if dr.isValidForEdit(session[:user_type], session[:user_id])
+      render partial: 'edit_delivery_details', locals: {dr_id: dr.id}
+    end
+  end
+
+  def show_volunteer_option_delivery(dr)
+    if dr.is_valid_for_volunteer(session)
+      render partial: 'volunteer_status_view', locals: {dr_id: dr.id}
+    end
+  end
 
 end

@@ -15,13 +15,6 @@ module ApplicationHelper
     end
   end
 
-  # TODO: should this be in this Helper?
-  def showEditOptionDelivery(dr)
-    if dr.isValidForEdit(session[:user_type], session[:user_id])
-      render partial: 'edit_delivery_details', locals: {dr_id: dr.id}
-    end
-  end
-
   def includeFlashMessage
     if(session[:message])
       render partial: "helpers/flash_message", locals: { message: session[:message] }

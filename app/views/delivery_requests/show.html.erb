@@ -16,7 +16,8 @@
   </ul>
 <% end %>
 
-<%= showEditOptionDelivery(@delivery_request) %>
+<%= show_edit_option_delivery(@delivery_request) %>
+<%= show_volunteer_option_delivery(@delivery_request) %>
 
 <h4>Comments</h4>
 <% @delivery_request.comments.each do |c| %>
