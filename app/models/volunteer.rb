@@ -13,7 +13,7 @@ class Volunteer < ApplicationRecord
   end
 
   def find_or_create_new_route(delivery_request)
-    existing = self.delivery_routes.find {|rt| rt.estimated_delivery_date == delivery_request.requested_date}
+    existing = self.delivery_routes.find {|rt| (rt.estimated_delivery_date == delivery_request.requested_date) && (rt.status != "completed")}
     if existing
       existing.delivery_requests << delivery_request
       existing

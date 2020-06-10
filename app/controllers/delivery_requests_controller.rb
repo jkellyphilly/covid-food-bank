@@ -26,7 +26,6 @@ class DeliveryRequestsController < ApplicationController
     @delivery_request = DeliveryRequest.create(request_params)
 
     if @delivery_request.valid?
-      # Create member association for this delivery request
       @delivery_request.associate_member(session)
 
       session[:message] = "Way to go, #{@delivery_request.community_member.name}! Your request is now in our system and will be picked up by a volunteer."
@@ -52,7 +51,7 @@ class DeliveryRequestsController < ApplicationController
     if(params[:delivery_request][:status])
       previous_status = @delivery_request.status
     end
-    binding.pry
+
     @delivery_request.update(request_params)
     if @delivery_request.valid?
       if(previous_status)

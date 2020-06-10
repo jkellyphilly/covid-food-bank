@@ -9,9 +9,6 @@ TODO's
 
 * Maybe all of my helper methods should be snake case and not camelCase
 
-NEXT
-* Decide on whether I'm going to enforce strictly moving between statuses, or whether I'll just kind of allow things to work the way they're working now...
-
 
 -----------------
 ASIDE

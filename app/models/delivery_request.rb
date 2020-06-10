@@ -52,6 +52,7 @@ class DeliveryRequest < ApplicationRecord
     !self.delivery_route && (session[:user_type] == 'volunteers')
   end
 
+  # TODO: define full status update logic
   def update_status(prev_status, vol_id)
     if prev_status == "new"
       if self.status != "confirmed"
@@ -67,6 +68,19 @@ class DeliveryRequest < ApplicationRecord
         self.delivery_route_id = nil
         self.save
       end
+    elsif prev_status == "completed"
+      if self.status == "new"
+        self.delivery_route.destroy if (self.delivery_route_size == 1)
+
+        self.delivery_route_id = nil
+        self.save
+      elsif self.status == "confirmed"
+        binding.pry
+      end
+    else
+      # TODO: clean up the wording of this error
+      session[:message] = "BAD ERROR."
+      redirect_to '/delivery-requests'
     end
   end
 

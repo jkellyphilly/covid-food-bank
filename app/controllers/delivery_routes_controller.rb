@@ -20,7 +20,7 @@ class DeliveryRoutesController < ApplicationController
   def update
     @delivery_route.update(status: params[:status])
     if @delivery_route.valid?
-      @delivery_route.updateAllStatuses(@delivery_route.status)
+      @delivery_route.update_all_statuses(@delivery_route.status)
       redirect_to volunteer_delivery_route_path(@volunteer, @delivery_route)
     else
       binding.pry

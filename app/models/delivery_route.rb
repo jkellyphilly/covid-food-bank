@@ -8,7 +8,7 @@ class DeliveryRoute < ApplicationRecord
     (self.volunteer_id == session[:user_id]) && (session[:user_type] == 'volunteers')
   end
 
-  def updateAllStatuses(new_status)
+  def update_all_statuses(new_status)
     self.delivery_requests.each do |dreq|
       dreq.status = new_status
       if new_status == "new"

@@ -10,10 +10,10 @@
 
 <%= form_for @delivery_request do |f| %>
   <%= f.radio_button :status, 'new' %>
-  <%= f.label :status_new, 'Mark this delivery as new (not confirmed)' %>
+  <%= f.label :status_new, 'Mark this delivery as new (I am unable to make this delivery at the time requested)' %>
   <br>
   <%= f.radio_button :status, 'confirmed' %>
-  <%= f.label :status_confirmed, 'Mark this delivery as confirmed (add to my routes)' %>
+  <%= f.label :status_confirmed, 'Mark this delivery as confirmed (Add this to my in-progress routes)' %>
   <br>
   <%= f.submit %>
 <% end %>
