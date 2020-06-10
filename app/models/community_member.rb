@@ -5,9 +5,8 @@ class CommunityMember < ApplicationRecord
   has_many :volunteers, through: :delivery_requests
   has_many :comments
 
-  validates :name, :address, :email, :phone_number, :username, presence: true
+  validates :name, :email, :username, presence: true
   validates :username, uniqueness: true
-  validates :phone_number, length: { is: 10 }
   # TODO: figure out why the password is showing on Google that it's compromised
 
   def isLoggedIn(session)

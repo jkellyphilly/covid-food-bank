@@ -26,6 +26,10 @@ gem 'jbuilder', '~> 2.7'
 gem 'bcrypt'
 gem 'pry'
 
+# Use Simple Password Generation to generate a new password for parties that
+# log in using Github
+gem 'simple-password-gen'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
