@@ -10,9 +10,8 @@ TODO's
 * Maybe all of my helper methods should be snake case and not camelCase
 
 NEXT
-*
-
+* 
 
 ASIDE
 
-  It seems like there are definitely some limitations here... for instance, if I want to update a delivery request from a past date, then my current date validation method prevents me from doing that. 
+  It seems like there are definitely some limitations here... for instance, if I want to update a delivery request from a past date, then my current date validation method prevents me from doing that.

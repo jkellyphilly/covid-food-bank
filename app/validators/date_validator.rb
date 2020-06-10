@@ -1,6 +1,7 @@
 class DateValidator < ActiveModel::Validator
 
   def validate(record)
+    binding.pry
     date_split = record.requested_date.split("/")
     if (date_split.length != 3)
       record.errors[:requested_date] << "must be specified in the format MM/DD/YYYY"

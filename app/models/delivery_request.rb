@@ -12,7 +12,7 @@ class DeliveryRequest < ApplicationRecord
   scope :confirmed, -> { where(status: "confirmed") }
   scope :completed, -> { where(status: "completed") }
 
-  def associateMember(session)
+  def associate_member(session)
     if (session[:user_type] == 'community-members')
       member = CommunityMember.find(session[:user_id])
       member.delivery_requests << self
@@ -41,11 +41,15 @@ class DeliveryRequest < ApplicationRecord
   end
 
   def is_valid_for_volunteer(session)
-    !self.delivery_route || self.matches_current_volunteer(session)
+    self.is_empty_delivery_route(session) || self.matches_current_volunteer(session)
   end
 
   def matches_current_volunteer(session)
-    session[:user_type] == 'volunteers' && self.volunteer.id == session[:user_id]
+    session[:user_type] == 'volunteers' && (self.volunteer.id == session[:user_id])
+  end
+
+  def is_empty_delivery_route(session)
+    !self.delivery_route && (session[:user_type] == 'volunteers')
   end
 
   def update_status(prev_status, vol_id)

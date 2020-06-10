@@ -27,7 +27,7 @@ class DeliveryRequestsController < ApplicationController
 
     if @delivery_request.valid?
       # Create member association for this delivery request
-      @delivery_request.associateMember(session)
+      @delivery_request.associate_member(session)
 
       session[:message] = "Way to go, #{@delivery_request.community_member.name}! Your request is now in our system and will be picked up by a volunteer."
       redirect_to delivery_request_path(@delivery_request)
@@ -86,7 +86,7 @@ class DeliveryRequestsController < ApplicationController
   end
 
   def require_edit_scenario
-    unless @delivery_request.isValidForEdit(session[:user_type], session[:user_id])
+    unless @delivery_request.is_valid_for_edit(session[:user_type], session[:user_id])
       session[:message] = "Error: You can only edit your own delivery requests before they are confirmed by a volunteer."
       redirect_to delivery_request_path(@delivery_request)
     end
