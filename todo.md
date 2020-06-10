@@ -9,11 +9,8 @@ TODO's
 
 * Maybe all of my helper methods should be snake case and not camelCase
 
-* NEXT - ensure that when I make a comment from a nested place, I stay on that nested view
-
 NEXT
 * Decide on whether I'm going to enforce strictly moving between statuses, or whether I'll just kind of allow things to work the way they're working now...
-
 
 
 -----------------
