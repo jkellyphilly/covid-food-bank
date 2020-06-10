@@ -75,7 +75,7 @@ class DeliveryRequest < ApplicationRecord
         self.delivery_route_id = nil
         self.save
       elsif self.status == "confirmed"
-        binding.pry
+        Volunteer.find(vol_id).find_or_create_new_route(self)
       end
     else
       # TODO: clean up the wording of this error
