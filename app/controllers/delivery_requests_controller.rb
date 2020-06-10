@@ -74,8 +74,10 @@ class DeliveryRequestsController < ApplicationController
   end
 
   def require_login
-    session[:message] = "Error: You must be logged in to view information about our Community. Join us!"
-    redirect_to '/' unless session.include? :user_id
+    unless session.include? :user_id
+      session[:message] = "Error: You must be logged in to view information about our Community. Join us!"
+      redirect_to '/'
+    end
   end
 
   def require_edit_scenario

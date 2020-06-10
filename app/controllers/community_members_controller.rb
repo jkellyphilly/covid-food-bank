@@ -46,8 +46,10 @@ class CommunityMembersController < ApplicationController
   private
 
   def require_login
-    session[:message] = "Error: You must be logged in to view information about our Community. Join us!"
-    redirect_to '/' unless session.include? :user_id
+    unless session.include? :user_id
+      session[:message] = "Error: You must be logged in to view information about our Community. Join us!"
+      redirect_to '/'
+    end
   end
 
   def find_member
