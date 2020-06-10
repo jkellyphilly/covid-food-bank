@@ -21,7 +21,7 @@ module DeliveryRequestsHelper
   end
 
   def show_edit_option_delivery(dr)
-    if dr.isValidForEdit(session[:user_type], session[:user_id])
+    if dr.is_valid_for_edit(session[:user_type], session[:user_id])
       render partial: 'edit_delivery_details', locals: {dr_id: dr.id}
     end
   end

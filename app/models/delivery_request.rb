@@ -32,16 +32,12 @@ class DeliveryRequest < ApplicationRecord
     self.delivery_route.delivery_requests.size
   end
 
-  def matchesCurrentMember(user_type, current_member_id)
+  def matches_current_member(user_type, current_member_id)
     (user_type == 'community-members') && (self.community_member.id == current_member_id)
   end
 
-  def statusIsValidForEdit
-    self.status == "new"
-  end
-
-  def isValidForEdit(user_type, current_member_id)
-    self.matchesCurrentMember(user_type, current_member_id) && self.statusIsValidForEdit
+  def is_valid_for_edit(user_type, current_member_id)
+    self.matches_current_member(user_type, current_member_id) && (self.status == "new")
   end
 
   def is_valid_for_volunteer(session)
