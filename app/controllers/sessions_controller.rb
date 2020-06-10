@@ -43,7 +43,20 @@ class SessionsController < ApplicationController
           redirect_to community_member_path(@community_member)
         end
       elsif (session[:user_type] == 'volunteers')
-        binding.pry
+        @volunteer = Volunteer.find_or_create_by(username: user_username, email: user_email)
+        if @volunteer.valid?
+          session[:user_id] = @volunteer.id
+          session[:message] = "Please note that if you change your username/email here, you won't be able to log in with your Github account unless your user ID and email from there match what we have in our records."
+          redirect_to volunteer_path(@volunteer)
+        else
+          @volunteer.name = user_name
+          @volunteer.email = user_email
+          @volunteer.password = Password.random 15
+          @volunteer.save
+          session[:user_id] = @volunteer.id
+          session[:message] = "Welcome to the community! Please note that if you change your username/email here, you won't be able to log in with your Github account unless your user ID and email from there match what we have in our records here."
+          redirect_to volunteer_path(@volunteer)
+        end
       else
         session[:message] = "Login from third party site failed."
         redirect_to "/"

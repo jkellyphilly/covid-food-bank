@@ -41,7 +41,7 @@ class VolunteersController < ApplicationController
   end
 
   def login
-    session[:user_type] = 'community-members'
+    session[:user_type] = 'volunteers'
   end
 
   private
