@@ -48,13 +48,16 @@ class DeliveryRequestsController < ApplicationController
     if(params[:delivery_request][:status])
       previous_status = @delivery_request.status
     end
-
+    binding.pry
     @delivery_request.update(request_params)
     if @delivery_request.valid?
       if(previous_status)
         @delivery_request.update_status(previous_status, session[:user_id])
       end
 
+      redirect_to delivery_request_path(@delivery_request)
+    elsif (session[:user_type] == 'volunteers')
+      session[:message] = "Status is unable to be updated because the requested delivery date has passed. Leave a comment for the requesting member to update the requested date to a valid future date."
       redirect_to delivery_request_path(@delivery_request)
     else
       render :"delivery_requests/edit"
