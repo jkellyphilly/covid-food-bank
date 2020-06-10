@@ -1,6 +1,6 @@
 class CommunityMembersController < ApplicationController
 
-  before_action :require_login, except: [:login, :new]
+  before_action :require_login, except: [:login, :new, :create]
   before_action :find_member, only: [:show, :edit, :update]
   before_action :require_current_member, only: [:edit]
 

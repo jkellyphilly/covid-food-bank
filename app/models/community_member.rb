@@ -7,7 +7,7 @@ class CommunityMember < ApplicationRecord
 
   validates :name, :address, :email, :phone_number, :username, presence: true
   validates :username, uniqueness: true
-  # TODO: set up a validation for the phone number
+  validates :phone_number, length: { is: 10 }
   # TODO: figure out why the password is showing on Google that it's compromised
 
   def isLoggedIn(session)
