@@ -25,3 +25,10 @@
     <p><%=c.content%></p>
   </div>
 <% end %>
+
+<br><br>
+<p>Leave a comment: </p>
+<%= form_for @new_comment do |f| %>
+  <%= f.text_field :content %>
+  <%= f.submit 'Post' %>
+<% end %>
