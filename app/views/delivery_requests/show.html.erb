@@ -17,3 +17,11 @@
 <% end %>
 
 <%= showEditOptionDelivery(@delivery_request) %>
+
+<h4>Comments</h4>
+<% @delivery_request.comments.each do |c| %>
+  <div class="comment">
+    <%= print_user_and_time(c) %>
+    <p><%=c.content%></p>
+  </div>
+<% end %>
