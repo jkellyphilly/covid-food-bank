@@ -96,8 +96,10 @@ class DeliveryRequestsController < ApplicationController
   end
 
   def require_member_login
-    session[:message] = "Error: You must be logged in as a community member to create a new delivery request."
-    redirect_to '/delivery-requests' unless (session.include?(:user_id) && (session[:user_type] == "community-members"))
+    unless (session.include?(:user_id) && (session[:user_type] == "community-members"))
+      session[:message] = "Error: You must be logged in as a community member to create a new delivery request."
+      redirect_to '/delivery-requests'
+    end
   end
 
 end
