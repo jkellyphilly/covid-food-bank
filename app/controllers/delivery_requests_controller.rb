@@ -62,6 +62,10 @@ class DeliveryRequestsController < ApplicationController
   end
 
   def volunteer
+    unless @delivery_request.is_valid_for_volunteer(session)
+      session[:message] = "Error: you can only edit the status of delivery requests that belong to your routes or that are not yet assigned to a route."
+      redirect_to delivery_request_path(@delivery_request)
+    end
   end
 
   private

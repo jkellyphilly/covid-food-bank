@@ -10,5 +10,4 @@ TODO's
 * Maybe all of my helper methods should be snake case and not camelCase
 
 NEXT
-* Put "Edit the status of this delivery" on the delivery pages
-* Ensure that only applicable delivery requests can have their statuses edited (i.e. if they don't have a route, they can be edited)
+* Ensure that only applicable delivery requests can have their statuses edited (i.e. if they don't have a route, they can be edited, and can only edit the request if I'm the volunteer who owns the route that it belongs to)
