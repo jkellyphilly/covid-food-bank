@@ -30,5 +30,6 @@
 <p>Leave a comment: </p>
 <%= form_for @new_comment do |f| %>
   <%= f.text_field :content %>
+  <input type="hidden" name="delivery_request_id" value="<%=@delivery_request.id%>">
   <%= f.submit 'Post' %>
 <% end %>

@@ -18,7 +18,7 @@ Rails.application.routes.draw do
 
   resources :delivery_requests, path: "delivery-requests"
 
-  resources :comments, only: [:index]
+  resources :comments, only: [:index, :create]
 
   get '/logout', to: 'sessions#destroy'
 end
