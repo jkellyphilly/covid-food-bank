@@ -12,11 +12,8 @@
   </head>
 
   <body>
-    <div class="banner" align="right">
-      <a href="/delivery-requests">Home</a>
-      <a href="/logout">Logout</a><br><br>
-    </div>
-    <%= includeFlashMessage %>
+    <%= include_banner %>
+    <%= include_flash_message %>
     <%= yield %>
   </body>
 </html>
