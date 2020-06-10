@@ -8,9 +8,8 @@ class SessionsController < ApplicationController
         session[:user_type] = 'community-members'
         redirect_to community_member_path(@community_member)
       else
-        # TODO: define error state
-        # Incorrect username or password given
-        binding.pry
+        session[:message] = "Incorrect username and password. Please try again."
+        redirect_to "/community-members/login"
       end
     elsif params[:user_type] == "volunteers"
       @volunteer = Volunteer.find_by(username: params[:username])
@@ -19,9 +18,8 @@ class SessionsController < ApplicationController
         session[:user_type] = 'volunteers'
         redirect_to volunteer_path(@volunteer)
       else
-        # TODO: define error state
-        # Incorrect username or password given
-        binding.pry
+        session[:message] = "Incorrect username and password. Please try again."
+        redirect_to "/volunteers/login"
       end
     else
       session[:message] = "Invalid login type occurred. Please try again."
