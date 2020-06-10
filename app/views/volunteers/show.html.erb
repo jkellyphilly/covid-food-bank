@@ -11,7 +11,7 @@
 
 <h2>Upcoming Routes</h2>
 <ul>
-  <% @volunteer.delivery_routes.each do |route| %>
+  <% @volunteer.upcoming_delivery_routes.each do |route| %>
     <li><%= link_to "Route ID \##{route.id}", volunteer_delivery_route_path(@volunteer, route) %></li>
     <li>Route date: <%=route.estimated_delivery_date%></li>
     <br>
