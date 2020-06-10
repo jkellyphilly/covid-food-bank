@@ -10,4 +10,5 @@ TODO's
 * Maybe all of my helper methods should be snake case and not camelCase
 
 NEXT
-* Build comment-functionality; comments are on DeliveryRequest pages ONLY
+* Put "Edit the status of this delivery" on the delivery pages
+* Ensure that only applicable delivery requests can have their statuses edited (i.e. if they don't have a route, they can be edited)

@@ -7,7 +7,8 @@ class Volunteer < ApplicationRecord
 
   validates :name, :email, :phone_number, :username, presence: true
   validates :username, uniqueness: true
-  # TODO: set up a validation for the phone number
+  validates :phone_number, length: { is: 10 }
+  # TODO: custom error message for the phone number? 
 
   def isLoggedIn(session)
     session[:user_id] == self.id && session[:user_type] == 'volunteers' ? true : false

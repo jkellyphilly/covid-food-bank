@@ -1,7 +1,7 @@
 <h1>Sign up to be a volunteer for our community!</h1>
 
 <% if @volunteer.errors.any? %>
-  <%= render partial: "helpers/error_fields", locals: {user: @volunteer} %>
+  <%= render partial: "helpers/error_fields", locals: {object: @volunteer} %>
 <% end %>
 
 <div id="new_volunteer_form">
