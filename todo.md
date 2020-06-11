@@ -2,8 +2,6 @@ TODO's
 
 * Make a method to get a full list (hash) of items with their "count", then print that out on the route
 
-* Update the CM and Volunteer "directories" to actually have some content on them
-
 * Update the "delete" forms to follow this standard/convention
   - https://learn.co/tracks/full-stack-web-development-v8/module-13-rails/section-6-validations-and-forms/delete-forms
 
@@ -11,17 +9,10 @@ TODO's
 
 * Define full update_status logic
 
-NEXT
-* Ability to delete requests
-
 -----------------
 ASIDE
 
   It seems like there are definitely some limitations here... for instance, if I want to update a delivery request from a past date, then my current date validation method prevents me from doing that.
-
-
-
-
 
 
 

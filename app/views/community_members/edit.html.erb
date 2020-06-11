@@ -1,7 +1,7 @@
 <h1>Edit your profile</h1>
 
 <% if @community_member.errors.any? %>
-  <%= render partial: "helpers/error_fields", locals: {user: @community_member} %>
+  <%= render partial: "helpers/error_fields", locals: {object: @community_member} %>
 <% end %>
 
 <div id="edit_community_member_form">
