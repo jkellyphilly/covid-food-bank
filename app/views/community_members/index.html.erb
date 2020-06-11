@@ -1,5 +1,8 @@
-<ul>
-  <% @community_members.each do |cm| %>
-    <li><%= cm.username %></li>
-  <% end %>
-</ul>
+<h1>Community Member Directory</h1>
+
+<% @community_members.each do |cm| %>
+  <ul>
+    <li><%=link_to cm.name, community_member_path(cm) %></li>
+    <li>Email: <%= cm.email %></li>
+  </ul>
+<% end %>
