@@ -5,3 +5,5 @@
 <% end %>
 
 <%= render partial: 'delivery_request_form', locals: {dr: @delivery_request} %>
+
+<%= include_delete_option_request(@delivery_request) %>

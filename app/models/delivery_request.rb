@@ -56,7 +56,8 @@ class DeliveryRequest < ApplicationRecord
   def update_status(prev_status, vol_id)
     if prev_status == "new"
       if self.status != "confirmed"
-        # TODO: error. There can't be a jump from new status to completed.
+        session[:message] = "A delivery can not be marked as completed unless it is first confirmed by a volunteer"
+        redirect_to delivery_request_path(self)
       else
         # Either find a route that has the date, or create a new one
         Volunteer.find(vol_id).find_or_create_new_route(self)
@@ -78,10 +79,21 @@ class DeliveryRequest < ApplicationRecord
         Volunteer.find(vol_id).find_or_create_new_route(self)
       end
     else
-      # TODO: clean up the wording of this error
-      session[:message] = "BAD ERROR."
+      session[:message] = "Previous status is out-of-bounds"
       redirect_to '/delivery-requests'
     end
+  end
+
+  def is_valid_for_deletion
+    (self.status == "new") || self.is_valid_for_deletion_confirmed
+  end
+
+  def is_valid_for_deletion_confirmed
+    (self.status == "confirmed") && self.date_is_not_today
+  end
+
+  def date_is_not_today
+    self.requested_date != Time.now.strftime('%m/%d/%Y')
   end
 
 end

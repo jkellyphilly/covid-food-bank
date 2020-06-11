@@ -1,8 +1,8 @@
 class DeliveryRequestsController < ApplicationController
 
-  before_action :require_login, except: [:new]
-  before_action :require_member_login, only: [:new]
-  before_action :find_request, only: [:show, :edit, :update, :volunteer]
+  before_action :require_login, except: [:new, :destroy]
+  before_action :require_member_login, only: [:new, :destroy]
+  before_action :find_request, only: [:show, :edit, :update, :volunteer, :destroy]
   before_action :require_edit_scenario, only: [:edit]
 
   def index
@@ -74,6 +74,18 @@ class DeliveryRequestsController < ApplicationController
     end
   end
 
+  def destroy
+    @community_member = CommunityMember.find(session[:user_id])
+    unless (@community_member.id == @delivery_request.community_member_id)
+      session[:message] = "Error: You may only delete requests that belong to your profile."
+      redirect_to '/delivery-requests'
+    end
+
+    @delivery_request.destroy
+    session[:message] = "Successfully deleted delivery request from your profile."
+    redirect_to community_member_path(@community_member)
+  end
+
   private
 
   def request_params
@@ -100,7 +112,7 @@ class DeliveryRequestsController < ApplicationController
 
   def require_member_login
     unless (session.include?(:user_id) && (session[:user_type] == "community-members"))
-      session[:message] = "Error: You must be logged in as a community member to create a new delivery request."
+      session[:message] = "Error: You must be logged in as a community member to create a new or destroy an existing delivery request."
       redirect_to '/delivery-requests'
     end
   end

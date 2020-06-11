@@ -38,4 +38,10 @@ module DeliveryRequestsHelper
     end
   end
 
+  def include_delete_option_request(dr)
+    if dr.is_valid_for_deletion
+      render partial: 'delete_delivery_request', locals: {dreq: dr}
+    end
+  end
+
 end
