@@ -4,7 +4,7 @@ class DeliveryRoute < ApplicationRecord
   has_many :delivery_requests
   has_many :community_members, through: :delivery_requests
 
-  def belongsToCurrentVolunteer(session)
+  def belongs_to_current_volunteer(session)
     (self.volunteer_id == session[:user_id]) && (session[:user_type] == 'volunteers')
   end
 
@@ -19,7 +19,7 @@ class DeliveryRoute < ApplicationRecord
     end
   end
 
-  def isValidForDeletion
+  def is_valid_for_deletion
     self.status != "completed"
   end
 

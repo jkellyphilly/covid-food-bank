@@ -28,7 +28,7 @@ class DeliveryRoutesController < ApplicationController
   end
 
   def destroy
-    @delivery_route.updateAllStatuses("new")
+    @delivery_route.update_all_statuses("new")
     @delivery_route.destroy
     session[:message] = "Route has been deleted from your profile."
     redirect_to volunteer_path(@volunteer)
