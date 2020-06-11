@@ -1,5 +1,8 @@
-<ul>
-  <% @volunteers.each do |v| %>
-    <li><%= v.username %></li>
-  <% end %>
-</ul>
+<h1>Volunteer Directory</h1>
+
+<% @volunteers.each do |v| %>
+  <ul>
+    <li><%=link_to v.name, volunteer_path(v) %></li>
+    <li>Email: <%= v.email %></li>
+  </ul>
+<% end %>
