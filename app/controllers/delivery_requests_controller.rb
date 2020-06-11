@@ -81,6 +81,11 @@ class DeliveryRequestsController < ApplicationController
       redirect_to '/delivery-requests'
     end
 
+    # Delete all corresponding comments related to this request
+    @delivery_request.comments.each do |c|
+      c.destroy
+    end
+
     @delivery_request.destroy
     session[:message] = "Successfully deleted delivery request from your profile."
     redirect_to community_member_path(@community_member)
