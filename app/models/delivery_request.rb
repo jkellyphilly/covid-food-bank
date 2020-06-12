@@ -52,7 +52,6 @@ class DeliveryRequest < ApplicationRecord
     !self.delivery_route && (session[:user_type] == 'volunteers')
   end
 
-  # TODO: define full status update logic
   def update_status(prev_status, vol_id)
     if prev_status == "new"
       if self.status != "confirmed"

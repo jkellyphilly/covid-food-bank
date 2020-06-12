@@ -47,7 +47,6 @@ class DeliveryRequestsController < ApplicationController
   end
 
   def update
-    # TODO: clean up the logic here
     if(params[:delivery_request][:status])
       previous_status = @delivery_request.status
     end

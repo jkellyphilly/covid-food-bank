@@ -1,11 +1,5 @@
 module DeliveryRequestsHelper
 
-  # TODO: get this helper method defined and working HERE
-  # def printDeliveryTitle(dr)
-  #   binding.pry
-  # end
-
-  # TODO: rename this to camel_case
   def newDeliveryRequestWording
     if (@community_member)
       render partial: 'new_delivery_wording', locals: {

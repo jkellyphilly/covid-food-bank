@@ -1,7 +1,5 @@
 class CommentsController < ApplicationController
 
-  # TODO: do I need to figure out how to either redirect to one path or the other?
-  # I'm not sure how to do that... might just have to redirect back to the delivery request's page
   def create
     @delivery_request = DeliveryRequest.find(params[:delivery_request_id])
     comment = Comment.create(content: params[:comment][:content], delivery_request_id: @delivery_request.id)

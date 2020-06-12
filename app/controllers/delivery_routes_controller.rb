@@ -4,7 +4,6 @@ class DeliveryRoutesController < ApplicationController
   before_action :get_route, only: [:show, :edit, :update, :destroy]
   before_action :get_volunteer
   before_action :require_current_volunteer, only: [:edit]
-  # TODO: add a list of items per route (since the volunteer will need to buy it all?)
 
   def show
   end
