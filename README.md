@@ -34,4 +34,4 @@ This application is available as open source under the terms of the [MIT License
 
 ## Code of Conduct
 
-Everyone interacting in the CoVID Community Food Bank project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/'joel-kelly'/covid-community/blob/master/CODE_OF_CONDUCT.md).
+Everyone interacting in the CoVID Community Food Bank project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/jkellyphilly/covid-food-bank/blob/master/CODE_OF_CONDUCT.md).
