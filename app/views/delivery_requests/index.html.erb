@@ -4,7 +4,7 @@
 
 <h2>Unconfirmed Deliveries: </h2>
 <% @pending_delivery_requests.each do |dr| %>
-  <%= printDeliveryTitle(dr) %>
+  <%= print_delivery_title(dr) %>
   <ul>
     <li>Member requesting: <%= link_to dr.community_member.name, community_member_path(dr.community_member) %></li>
     <li>Requested items: <%= dr.items %></li>
@@ -15,7 +15,7 @@
 
 <h2>Confirmed Deliveries: </h2>
 <% @confirmed_delivery_requests.each do |dr| %>
-  <%= printDeliveryTitle(dr) %>
+  <%= print_delivery_title(dr) %>
   <ul>
     <li>Member requesting: <%= link_to dr.community_member.name, community_member_path(dr.community_member) %></li>
     <li>Requested items: <%= dr.items %></li>
@@ -27,7 +27,7 @@
 
 <h2>Completed Deliveries: </h2>
 <% @completed_delivery_requests.each do |dr| %>
-  <%= printDeliveryTitle(dr) %>
+  <%= print_delivery_title(dr) %>
   <ul>
     <li>Member requesting: <%= link_to dr.community_member.name, community_member_path(dr.community_member) %></li>
     <li>Requested items: <%= dr.items %></li>
