@@ -1,6 +1,6 @@
 module CommunityMembersHelper
 
-  def includeViewDeliveriesMember(member)
+  def include_view_deliveries_member(member)
     if member.isLoggedIn(session)
       render partial: "helpers/view_deliveries", locals: {type: 'community-members', user_id: member.id}
     end

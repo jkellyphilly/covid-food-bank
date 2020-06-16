@@ -1,6 +1,6 @@
 module DeliveryRequestsHelper
 
-  def newDeliveryRequestWording
+  def new_delivery_request_wording
     if (@community_member)
       render partial: 'new_delivery_wording', locals: {
         addressee: @community_member.name,
