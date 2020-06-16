@@ -2,7 +2,12 @@
 
 <h4>Status: <%=@delivery_route.status%></h4>
 
-<h3>Shopping list for this route: </h3>
+<h3>High-level overview of shopping list for this route: </h3>
+<ul>
+  <% @delivery_route.all_items.each do |item| %>
+    <li><%=item%></li>
+  <% end %>
+</ul>
 
 <h2>Delivery Requests along this route: </h2>
 <ul>

@@ -23,4 +23,9 @@ class DeliveryRoute < ApplicationRecord
     self.status != "completed"
   end
 
+  def all_items
+    unique_request_items = self.delivery_requests.uniq {|dreq| dreq.items}
+    unique_request_items.collect {|dreq| dreq.items}
+  end
+
 end
