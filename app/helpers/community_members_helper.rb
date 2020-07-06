@@ -24,4 +24,12 @@ module CommunityMembersHelper
     end
   end
 
+  def display_todays_requests(requests)
+    if requests.size == 0
+      render partial: 'helpers/none_today'
+    else
+      render partial: 'helpers/todays_requests', locals: {requests: requests}
+    end
+  end
+
 end
