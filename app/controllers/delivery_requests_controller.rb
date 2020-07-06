@@ -81,9 +81,7 @@ class DeliveryRequestsController < ApplicationController
     end
 
     # Delete all corresponding comments related to this request
-    @delivery_request.comments.each do |c|
-      c.destroy
-    end
+    @delivery_request.comments.each { |c| c.destroy }
 
     @delivery_request.destroy
     session[:message] = "Successfully deleted delivery request from your profile."
