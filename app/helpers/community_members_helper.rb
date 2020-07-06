@@ -18,4 +18,10 @@ module CommunityMembersHelper
     end
   end
 
+  def include_todays_completed_deliveries(member)
+    unless member.todays_completed_requests.size == 0
+      render partial: "helpers/include_today", locals: {keyword: 'completed', user_id: member.id}
+    end
+  end
+
 end

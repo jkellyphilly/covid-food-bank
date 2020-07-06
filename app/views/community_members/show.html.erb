@@ -17,5 +17,4 @@
 
 <%= include_todays_confirmed_deliveries(@community_member) %>
 
-<br>
-<%= link_to "View today's completed deliveries", "/community-members/#{@community_member.id}/todays-completed-requests" %>
+<%= include_todays_completed_deliveries(@community_member) %>
