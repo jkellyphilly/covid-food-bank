@@ -24,6 +24,10 @@ class CommunityMember < ApplicationRecord
     self.delivery_requests.completed
   end
 
+  def todays_confirmed_requests
+    self.delivery_requests.today.confirmed
+  end
+
   def todays_completed_requests
     self.delivery_requests.today.completed
   end
