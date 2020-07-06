@@ -1,0 +1,5 @@
+<% requests.each do |rq| %>
+  <li> <%= link_to "Delivery Request ID \##{rq.id}", delivery_request_path(rq) %> </li>
+  <li> Items: <%= rq.items %></li>
+  <br>
+<% end %>
