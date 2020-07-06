@@ -1,11 +1,3 @@
-<h1>Delivery Requests confirmed for today: </h1>
+<h1>Here are your delivery requests that are confirmed for today: </h1>
 
-<% if @todays_confirmed_requests.size == 0 %>
-  <h2>None at the moment.</h2>
-<% end %>
-
-<% @todays_confirmed_requests.each do |rq| %>
-  <li> <%= link_to "Delivery Request ID \##{rq.id}", delivery_request_path(rq) %> </li>
-  <li> Items: <%= rq.items %></li>
-  <br>
-<% end %>
+<%= display_todays_requests(@todays_confirmed_requests) %>
