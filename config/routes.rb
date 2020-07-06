@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get '/delivery-requests/:id/volunteer', to: 'delivery_requests#volunteer'
   get '/auth/github/callback', to: 'sessions#create'
   get '/community-members/:id/todays-confirmed-requests', to: 'community_members#todays_confirmed_requests'
+  get '/community-members/:id/todays-completed-requests', to: 'community_members#todays_completed_requests'
 
   resources :community_members, path: 'community-members' do
     resources :delivery_requests, path: 'delivery-requests', only: [:index, :show, :new]
