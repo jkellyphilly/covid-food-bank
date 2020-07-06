@@ -20,10 +20,11 @@ class DeliveryRoutesController < ApplicationController
     @delivery_route.update(status: params[:status])
     if @delivery_route.valid?
       @delivery_route.update_all_statuses(@delivery_route.status)
-      redirect_to volunteer_delivery_route_path(@volunteer, @delivery_route)
     else
-      binding.pry
+      session[:message] = "Error: delivery route failed to update."
     end
+
+    redirect_to volunteer_delivery_route_path(@volunteer, @delivery_route)
   end
 
   def destroy
