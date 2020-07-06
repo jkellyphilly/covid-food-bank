@@ -45,11 +45,11 @@ class CommunityMembersController < ApplicationController
   end
 
   def todays_confirmed_requests
-    @todays_confirmed_requests = @community_member.delivery_requests.today.confirmed
+    @todays_confirmed_requests = @community_member.todays_confirmed_requests
   end
 
   def todays_completed_requests
-    @todays_completed_requests = @community_member.delivery_requests.today.completed
+    @todays_completed_requests = @community_member.todays_completed_requests
   end
 
   private
