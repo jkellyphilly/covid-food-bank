@@ -12,6 +12,8 @@ class DeliveryRequest < ApplicationRecord
   scope :confirmed, -> { where(status: "confirmed") }
   scope :completed, -> { where(status: "completed") }
 
+  scope :today, -> { where(requested_date: Time.now.strftime('%m/%d/%Y') )}
+
   def associate_member(session)
     if (session[:user_type] == 'community-members')
       member = CommunityMember.find(session[:user_id])
@@ -93,6 +95,10 @@ class DeliveryRequest < ApplicationRecord
 
   def date_is_not_today
     self.requested_date != Time.now.strftime('%m/%d/%Y')
+  end
+
+  def date_is_today
+    !self.date_is_not_today
   end
 
 end

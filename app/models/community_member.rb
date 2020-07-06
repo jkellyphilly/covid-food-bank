@@ -13,14 +13,18 @@ class CommunityMember < ApplicationRecord
   end
 
   def pending_delivery_requests
-    self.delivery_requests.select {|dr| dr.status == "new"}
+    self.delivery_requests.pending
   end
 
   def confirmed_delivery_requests
-    self.delivery_requests.select {|dr| dr.status == "confirmed"}
+    self.delivery_requests.confirmed
   end
 
   def completed_delivery_requests
-    self.delivery_requests.select {|dr| dr.status == "completed"}
+    self.delivery_requests.completed
+  end
+
+  def todays_completed_requests
+    self.delivery_requests.today.completed
   end
 end

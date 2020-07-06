@@ -1,7 +1,7 @@
 class CommunityMembersController < ApplicationController
 
   before_action :require_login, except: [:login, :new, :create]
-  before_action :find_member, only: [:show, :edit, :update]
+  before_action :find_member, only: [:show, :edit, :update, :todays_confirmed_requests]
   before_action :require_current_member, only: [:edit]
 
   def index
@@ -42,6 +42,10 @@ class CommunityMembersController < ApplicationController
 
   def login
     session[:user_type] = 'community-members'
+  end
+
+  def todays_confirmed_requests
+    @todays_confirmed_requests = @community_member.delivery_requests.today.confirmed
   end
 
   private
