@@ -4,6 +4,9 @@ class DeliveryRoute < ApplicationRecord
   has_many :delivery_requests
   has_many :community_members, through: :delivery_requests
 
+  scope :upcoming, -> { where(status: "confirmed") }
+  scope :completed, -> { where(status: "completed") }
+
   def belongs_to_current_volunteer(session)
     (self.volunteer_id == session[:user_id]) && (session[:user_type] == 'volunteers')
   end
