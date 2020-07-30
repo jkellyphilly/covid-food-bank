@@ -1,4 +1,3 @@
-require 'pry'
 require 'rails_helper'
 
 RSpec.describe Volunteer, type: :model do
@@ -39,8 +38,6 @@ RSpec.describe Volunteer, type: :model do
     expect(@volunteer.completed_delivery_routes.size).to eq(1)
     expect(@volunteer.completed_delivery_routes.first.estimated_delivery_date).to eq("09/19/2200")
   end
-
-  # TODO: add a test for find_or_create_new_route
 
   it 'creates a new route for a delivery request with a new date' do
     @delivery_request_2 = DeliveryRequest.new(items: "spaghetti", requested_date: "09/20/2200")
