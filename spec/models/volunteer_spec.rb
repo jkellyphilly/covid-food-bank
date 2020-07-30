@@ -41,4 +41,19 @@ RSpec.describe Volunteer, type: :model do
   end
 
   # TODO: add a test for find_or_create_new_route
+
+  it 'creates a new route for a delivery request with a new date' do
+    @delivery_request_2 = DeliveryRequest.new(items: "spaghetti", requested_date: "09/20/2200")
+    @member.delivery_requests << @delivery_request_2
+    @member.save
+
+    @new_route = @volunteer.find_or_create_new_route(@delivery_request_2)
+    expect(@new_route.estimated_delivery_date).to eq("09/20/2200")
+  end
+
+  it 'finds an existing route for a delivery request with an existing date' do
+
+    @route = @volunteer.find_or_create_new_route(@delivery_request)
+    expect(@route.id).to eq(@delivery_route.id)
+  end
 end
