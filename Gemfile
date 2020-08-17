@@ -35,8 +35,8 @@ gem 'simple-password-gen'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
-# Manages environment variables
-gem 'dotenv-rails'
+# Use Figaro for securely storing environment variables
+gem 'figaro'
 
 # Use OmniAuth gem for GitHub
 gem 'omniauth-github'

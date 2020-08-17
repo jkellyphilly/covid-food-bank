@@ -42,3 +42,6 @@ yarn-debug.log*
 .env
 todo.md
 my-todo.md
+
+# Ignore application configuration
+/config/application.yml
