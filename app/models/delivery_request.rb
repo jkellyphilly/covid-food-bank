@@ -52,16 +52,9 @@ class DeliveryRequest < ApplicationRecord
   # request needs to be the volunteer that is currently logged in. However, if there is no
   # volunteer assigned yet (i.e. the delivery route is empty), then the delivery request is
   # able to be edited from volunteer perspective.
+
   def is_valid_for_volunteer(session)
-    self.is_empty_delivery_route(session) || self.matches_current_volunteer(session)
-  end
-
-  def matches_current_volunteer(session)
-    session[:user_type] == 'volunteers' && (self.volunteer.id == session[:user_id])
-  end
-
-  def is_empty_delivery_route(session)
-    !self.delivery_route && (session[:user_type] == 'volunteers')
+    session[:user_type] == 'volunteers' && (!self.delivery_route || self.volunteer.id == session[:user_id])
   end
 
   def update_status(prev_status, vol_id)
