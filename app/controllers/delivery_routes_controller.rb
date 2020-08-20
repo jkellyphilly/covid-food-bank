@@ -19,6 +19,8 @@ class DeliveryRoutesController < ApplicationController
   def update
     @delivery_route.update(status: params[:status])
     if @delivery_route.valid?
+      # If the updated route is valid, then update all of the statuses
+      # of the delivery requests it contains
       @delivery_route.update_all_statuses(@delivery_route.status)
     else
       session[:message] = "Error: delivery route failed to update."
@@ -28,6 +30,7 @@ class DeliveryRoutesController < ApplicationController
   end
 
   def destroy
+    # When destroying a route, first update all of the statuses that belong to it to "new"
     @delivery_route.update_all_statuses("new")
     @delivery_route.destroy
     session[:message] = "Route has been deleted from your profile."
@@ -36,6 +39,7 @@ class DeliveryRoutesController < ApplicationController
 
   private
 
+  # Ensures that a login has occurred (and the session has has been updated accordingly)
   def require_login
     unless session.include? :user_id
       session[:message] = "Error: You must be logged in to view information about our Community. Join us!"
@@ -51,6 +55,7 @@ class DeliveryRoutesController < ApplicationController
     @volunteer = Volunteer.find(params[:volunteer_id])
   end
 
+  # Used to ensure that a volunteer can only edit their own routes
   def require_current_volunteer
     unless((@volunteer.id == session[:user_id]) && (session[:user_type] == 'volunteers'))
       session[:message] = "You can only edit details of your own route."
