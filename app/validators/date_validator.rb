@@ -1,5 +1,7 @@
 class DateValidator < ActiveModel::Validator
 
+  # Ensure that the date given is in MM/DD/YYYY format.
+  # Also ensure that the date is not a past date
   def validate(record)
     date_split = record.requested_date.split("/")
     if (date_split.length != 3)
