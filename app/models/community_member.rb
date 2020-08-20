@@ -8,6 +8,8 @@ class CommunityMember < ApplicationRecord
   validates :name, :email, :username, presence: true
   validates :username, uniqueness: true
 
+  # Check the session hash to see if the :user_id key matches this instance
+  # of CommunityMember and check if the :user_type key is set to community-members
   def is_logged_in(session)
     session[:user_id] == self.id && session[:user_type] == 'community-members' ? true : false
   end
