@@ -8,10 +8,15 @@ class Volunteer < ApplicationRecord
   validates :name, :email, :username, presence: true
   validates :username, uniqueness: true
 
+  # Check the session hash to see if the :user_id key matches this instance
+  # of Volunteer and check if the :user_type key is set to volunteers
   def is_logged_in(session)
     ((session[:user_id] == self.id) && (session[:user_type] == 'volunteers')) ? true : false
   end
 
+  # Delivery routes are grouped by date, so this method first looks for a non-completed route
+  # that belong to the current Volunteer which has the same date as the delivery request in
+  # question. If one is not found, then a new route is created
   def find_or_create_new_route(delivery_request)
     existing = self.delivery_routes.find {|rt| (rt.estimated_delivery_date == delivery_request.requested_date) && (rt.status != "completed")}
     if existing
