@@ -7,11 +7,14 @@ class DeliveryRequestsController < ApplicationController
 
   def index
     if params[:community_member_id]
+      # If we have community_member_id key in params, then we only want to show
+      # the pending/confirmed/completed delivery requests for that member
       @community_member = CommunityMember.find(params[:community_member_id])
       @pending_delivery_requests = @community_member.pending_delivery_requests
       @confirmed_delivery_requests = @community_member.confirmed_delivery_requests
       @completed_delivery_requests = @community_member.completed_delivery_requests
     else
+      # Otherwise, show all of the pending/confirmed/completed delivery requests
       @pending_delivery_requests = DeliveryRequest.pending
       @confirmed_delivery_requests = DeliveryRequest.confirmed
       @completed_delivery_requests = DeliveryRequest.completed
@@ -47,6 +50,7 @@ class DeliveryRequestsController < ApplicationController
   end
 
   def update
+    # If there's a status given in the status, set that as the previous_status variable
     if(params[:delivery_request][:status])
       previous_status = @delivery_request.status
     end
@@ -59,6 +63,8 @@ class DeliveryRequestsController < ApplicationController
 
       redirect_to delivery_request_path(@delivery_request)
     elsif (session[:user_type] == 'volunteers')
+      # If a volunteer is trying to update the delivery request but it's not valid,
+      # it must be because the date is passed.
       session[:message] = "Status is unable to be updated because the requested delivery date has passed. Leave a comment for the requesting member to update the requested date to a valid future date."
       redirect_to delivery_request_path(@delivery_request)
     else
@@ -67,6 +73,7 @@ class DeliveryRequestsController < ApplicationController
   end
 
   def volunteer
+    # Ensure that the delivery request can be edited from volunteer perspective
     unless @delivery_request.is_valid_for_volunteer(session)
       session[:message] = "Error: you can only edit the status of delivery requests that belong to your routes or that are not yet assigned to a route."
       redirect_to delivery_request_path(@delivery_request)
@@ -75,6 +82,8 @@ class DeliveryRequestsController < ApplicationController
 
   def destroy
     @community_member = CommunityMember.find(session[:user_id])
+
+    # Only allow community members to destroy their own delivery requests
     unless (@community_member.id == @delivery_request.community_member_id)
       session[:message] = "Error: You may only delete requests that belong to your profile."
       redirect_to '/delivery-requests'
@@ -90,6 +99,7 @@ class DeliveryRequestsController < ApplicationController
 
   private
 
+  # Use strong params to ensure valid data is received
   def request_params
     params.require(:delivery_request).permit(:items, :requested_date, :status)
   end
@@ -98,6 +108,7 @@ class DeliveryRequestsController < ApplicationController
     @delivery_request = DeliveryRequest.find(params[:id])
   end
 
+  # Ensures that a login has occurred (and the session has has been updated accordingly)
   def require_login
     unless session.include? :user_id
       session[:message] = "Error: You must be logged in to view information about our Community. Join us!"
@@ -112,6 +123,7 @@ class DeliveryRequestsController < ApplicationController
     end
   end
 
+  # Specifically require a member to be logged in
   def require_member_login
     unless (session.include?(:user_id) && (session[:user_type] == "community-members"))
       session[:message] = "Error: You must be logged in as a community member to create a new or destroy an existing delivery request."
