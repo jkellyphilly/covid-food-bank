@@ -51,15 +51,17 @@ class DeliveryRequest < ApplicationRecord
   # To be able to be edited (from volunteer perspective), the volunteer of this delivery
   # request needs to be the volunteer that is currently logged in. However, if there is no
   # volunteer assigned yet (i.e. the delivery route is empty), then the delivery request is
-  # able to be edited from volunteer perspective.
-
+  # able to be edited from volunteer perspective
   def is_valid_for_volunteer(session)
     session[:user_type] == 'volunteers' && (!self.delivery_route || self.volunteer.id == session[:user_id])
   end
 
+  # This method contains the logic involved for updating the status of a delivery request
   def update_status(prev_status, vol_id)
     if prev_status == "new"
       if self.status != "confirmed"
+        # That's an error, because a delivery request can't jump from "new" status
+        # directly to "completed". Thus, display error message and redirect to the delivery request
         session[:message] = "A delivery can not be marked as completed unless it is first confirmed by a volunteer"
         redirect_to delivery_request_path(self)
       else
@@ -68,21 +70,32 @@ class DeliveryRequest < ApplicationRecord
       end
     elsif prev_status == "confirmed"
       if self.status == "new"
+        # If this delivery request was the only item it the route it belonged to,
+        # then destroy the entire route
         self.delivery_route.destroy if (self.delivery_route_size == 1)
 
+        # Otherwise, remove the association with the delivery route
         self.delivery_route_id = nil
         self.save
       end
     elsif prev_status == "completed"
       if self.status == "new"
+        # If this delivery request was the only item it the route it belonged to,
+        # then destroy the entire route
         self.delivery_route.destroy if (self.delivery_route_size == 1)
 
+        # Otherwise, remove the association with the delivery route
         self.delivery_route_id = nil
         self.save
       elsif self.status == "confirmed"
+        # Either find a route that has the date, or create a new one
         Volunteer.find(vol_id).find_or_create_new_route(self)
       end
     else
+      # Error state. This should never be reached, and if it is it means that
+      # at some point the delivery request's status was updated to something other
+      # than new/confirmed/completed (which, for the first version of this app, are
+      # the only possible states for delivery requests)
       session[:message] = "Previous status is out-of-bounds"
       redirect_to '/delivery-requests'
     end
