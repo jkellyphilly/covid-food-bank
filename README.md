@@ -6,6 +6,8 @@ This CoVID Community Food Bank application is designed for community members to 
 
 In troubling times, the power of humanity is through community. And community means showing up for neighbors, friends, or complete strangers. This application is my attempt to foster that sense of community.
 
+Visit the live application here: https://covid-community-food-bank.herokuapp.com/
+
 ## Installation
 
 Fork and clone this repository down to your local environment, then run 'bundle install' to install all required gems from the Gemfile.
@@ -18,7 +20,7 @@ Sign up for a new member/volunteer profile (or log in if you already have a prof
 
 Note: you can also sign up/log in with your Github account!
 
-For a more thorough explanation of how to use this app, check out this video: https://www.youtube.com/watch?v=JtzQ6qJr1lk
+For a more thorough explanation of how to use this app, check out this demo: https://www.youtube.com/watch?v=JtzQ6qJr1lk
 
 ## Development
 
