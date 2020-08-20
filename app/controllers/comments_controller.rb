@@ -14,6 +14,8 @@ class CommentsController < ApplicationController
       comment.save
     end
 
+    # If the params has community_member_id key, then we're coming from the nested resource,
+    # so redirect there. Otherwise just redirect to the delivery request's path
     if (params[:community_member_id])
       redirect_to community_member_delivery_request_path(@delivery_request.community_member, @delivery_request)
     else

@@ -46,6 +46,7 @@ class VolunteersController < ApplicationController
 
   private
 
+  # Ensures that a login has occurred (and the session has has been updated accordingly)
   def require_login
     unless session.include? :user_id
       session[:message] = "Error: You must be logged in to view information about our Community. Join us!"
@@ -57,10 +58,12 @@ class VolunteersController < ApplicationController
     @volunteer = Volunteer.find(params[:id])
   end
 
+  # Use strong params to ensure valid data is received
   def volunteer_params
     params.require(:volunteer).permit(:name, :phone_number, :email, :username, :password)
   end
 
+  # Used to ensure that a volunteer can only edit their own profile
   def require_current_volunteer
     unless ((session[:user_type] == 'volunteers') && (session[:user_id] == @volunteer.id))
       session[:message] = "Error: you can only edit your own profile."

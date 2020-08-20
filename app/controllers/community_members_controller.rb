@@ -54,6 +54,7 @@ class CommunityMembersController < ApplicationController
 
   private
 
+  # Ensures that a login has occurred (and the session has has been updated accordingly)
   def require_login
     unless session.include? :user_id
       session[:message] = "Error: You must be logged in to view information about our Community. Join us!"
@@ -65,10 +66,12 @@ class CommunityMembersController < ApplicationController
     @community_member = CommunityMember.find(params[:id])
   end
 
+  # Use strong params to ensure valid data is received
   def member_params
     params.require(:community_member).permit(:name, :address, :phone_number, :email, :allergies, :username, :password)
   end
 
+  # Used to ensure that a community member can only edit their own profile
   def require_current_member
     unless ((session[:user_type] == 'community-members') && (session[:user_id] == @community_member.id))
       session[:message] = "Error: You can only edit your own profile."
