@@ -27,16 +27,22 @@
   <%= show_edit_option_delivery(@delivery_request) %>
   <%= show_volunteer_option_delivery(@delivery_request) %>
 
-  <br><br>
-  <h3>Comments</h3>
-  <% @delivery_request.comments.each do |c| %>
-    <div class="comment">
-      <%= print_user_and_time(c) %>
-      <p><%=c.content%></p>
-    </div>
-  <% end %>
+  <br><br><br>
+  <h2>Comments</h2>
+  <br>
+  <div class="list-group">
+    <% @delivery_request.comments.each do |c| %>
+      <div class="list-group-item">
+        <div class="d-flex w-100 justify-content-between">
+          <%= print_user_and_time(c) %>
+          <small><%= c.print_time %></small>
+        </div>
+        <p class="mb-1"><%=c.content%></p>
+      </div>
+    <% end %>
+  </div>
 
-  <br><br>
+  <br>
   <p>Leave a comment: </p>
   <%= form_for @new_comment do |f| %>
     <%= f.text_field :content %>
@@ -44,7 +50,7 @@
     <% if @community_member %>
       <input type="hidden" name="community_member_id" value="<%=@community_member.id%>">
     <% end %>
-    <%= f.submit 'Post' %>
+    <%= f.submit 'Post', class: "btn btn-primary" %>
   <% end %>
 
 </div>
