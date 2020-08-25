@@ -1,9 +1,14 @@
-<h1>Sign up to be a volunteer for our community!</h1>
+<div class="container">
+  <br>
+    <h1>Sign up to be a volunteer for our community!</h1>
+  <br>
 
-<% if @volunteer.errors.any? %>
-  <%= render partial: "helpers/error_fields", locals: {object: @volunteer} %>
-<% end %>
+  <% if @volunteer.errors.any? %>
+    <%= render partial: "helpers/error_fields", locals: {object: @volunteer} %>
+  <% end %>
 
-<div id="new_volunteer_form">
-  <%= render partial: "helpers/info_form", locals: {user: @volunteer} %>
+  <h4>We'll never share your information with anyone.</h4>
+  <div id="new_volunteer_form">
+    <%= render partial: "helpers/info_form", locals: {user: @volunteer} %>
+  </div>
 </div>
