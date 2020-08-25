@@ -1,22 +1,32 @@
-<h1>Route ID #<%=@delivery_route.id%></h1>
+<div class="container">
+  <br>
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-4">Route ID #<%=@delivery_route.id%></h1>
+      <p>Status: <%=@delivery_route.status%></p>
+    </div>
+  </div>
 
-<h4>Status: <%=@delivery_route.status%></h4>
+  <h3>High-level overview of shopping list for this route: </h3>
+  <ul class="list-group list-group-flush">
+    <% @delivery_route.all_items.each do |item| %>
+      <li class="list-group-item"><%=item%></li>
+    <% end %>
+  </ul>
+  <br><br>
+  <h2>Delivery Requests along this route: </h2>
+  <div class="card-columns">
+    <% @delivery_route.delivery_requests.each do |dreq| %>
+      <div class="card" style="width: 22rem;">
+        <div class="card-body">
+          <%= print_delivery_title(dreq) %>
+          <h6 class="card-subtitle mb-2 text-muted">For <%= link_to dreq.community_member.name, community_member_path(dreq.community_member) %></h6>
+          <p class="card-text"><%= dreq.community_member.address %></p>
+        </div>
+      </div>
+      <br>
+    <% end %>
+  </div>
 
-<h3>High-level overview of shopping list for this route: </h3>
-<ul>
-  <% @delivery_route.all_items.each do |item| %>
-    <li><%=item%></li>
-  <% end %>
-</ul>
-
-<h2>Delivery Requests along this route: </h2>
-<ul>
-  <% @delivery_route.delivery_requests.each do |dreq| %>
-    <li><%=link_to "Delivery Request ID \##{dreq.id}", delivery_request_path(dreq)%></li>
-    <li>For: <%=link_to dreq.community_member.name, community_member_path(dreq.community_member)%></li>
-    <li>Address: <%=dreq.community_member.address%></li>
-    <br>
-  <% end %>
-</ul>
-
-<%= include_edit_option_route(@delivery_route) %>
+  <%= include_edit_option_route(@delivery_route) %>
+</div>

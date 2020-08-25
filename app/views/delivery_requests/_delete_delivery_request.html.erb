@@ -1,5 +1,5 @@
 <%= form_tag delivery_request_path(dreq) do %>
   <input id="hidden" type="hidden" name="_method" value="delete">
   <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-  <%= submit_tag "Delete this Request" %>
+  <%= submit_tag "Delete this Request", class: "btn btn-danger" %>
 <% end %>

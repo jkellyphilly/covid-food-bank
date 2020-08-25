@@ -1,9 +1,12 @@
-<h1>Edit your profile</h1>
+<div class="container">
+  <br>
+  <h1>Edit your profile</h1>
+  <br>
+  <% if @community_member.errors.any? %>
+    <%= render partial: "helpers/error_fields", locals: {object: @community_member} %>
+  <% end %>
 
-<% if @community_member.errors.any? %>
-  <%= render partial: "helpers/error_fields", locals: {object: @community_member} %>
-<% end %>
-
-<div id="edit_community_member_form">
-  <%= render partial: "helpers/info_form", locals: {user: @community_member} %>
+  <div id="edit_community_member_form">
+    <%= render partial: "helpers/info_form", locals: {user: @community_member} %>
+  </div>
 </div>

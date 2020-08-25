@@ -1,39 +1,56 @@
-<h1>Delivery ID #<%=@delivery_request.id%></h1>
-
-<h3>Requested by: <%=link_to @delivery_request.community_member.name, community_member_path(@delivery_request.community_member) %></h3>
-<h3>Delivery Request Status: <%=@delivery_request.status%></h3>
-<h3>Request Details</h3>
-<ul>
-  <li>Items: <%= @delivery_request.items %></li>
-  <li>Requested date for delivery: <%= @delivery_request.requested_date%></li>
-</ul>
-
-<% if @delivery_request.delivery_route %>
-  <h3>Route details</h3>
-  <ul>
-    <li>Route ID #<%=@delivery_request.delivery_route.id%></li>
-    <li>Volunteer: <%=link_to @delivery_request.volunteer_name, volunteer_path(@delivery_request.volunteer)%></li>
-  </ul>
-<% end %>
-
-<%= show_edit_option_delivery(@delivery_request) %>
-<%= show_volunteer_option_delivery(@delivery_request) %>
-
-<h4>Comments</h4>
-<% @delivery_request.comments.each do |c| %>
-  <div class="comment">
-    <%= print_user_and_time(c) %>
-    <p><%=c.content%></p>
+<div class="container">
+  <br>
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-4">Delivery ID #<%=@delivery_request.id%></h1>
+      <p>Requested by <%=link_to @delivery_request.community_member.name, community_member_path(@delivery_request.community_member) %></p>
+      <p>Status: <%=@delivery_request.status%></p>
+    </div>
   </div>
-<% end %>
 
-<br><br>
-<p>Leave a comment: </p>
-<%= form_for @new_comment do |f| %>
-  <%= f.text_field :content %>
-  <input type="hidden" name="delivery_request_id" value="<%=@delivery_request.id%>">
-  <% if @community_member %>
-    <input type="hidden" name="community_member_id" value="<%=@community_member.id%>">
+  <h3>Request Details</h3>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Items: <%= @delivery_request.items %></li>
+    <li class="list-group-item">Requested date for delivery: <%= @delivery_request.requested_date %></li>
+  </ul>
+  <br>
+
+  <% if @delivery_request.delivery_route %>
+    <h3>Route details</h3>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Route ID #<%=@delivery_request.delivery_route.id%></li>
+      <li class="list-group-item">Volunteer: <%=link_to @delivery_request.volunteer_name, volunteer_path(@delivery_request.volunteer)%></li>
+    </ul>
+    <br>
   <% end %>
-  <%= f.submit 'Post' %>
-<% end %>
+
+  <%= show_edit_option_delivery(@delivery_request) %>
+  <%= show_volunteer_option_delivery(@delivery_request) %>
+
+  <br><br><br>
+  <h2>Comments</h2>
+  <br>
+  <div class="list-group">
+    <% @delivery_request.comments.each do |c| %>
+      <div class="list-group-item">
+        <div class="d-flex w-100 justify-content-between">
+          <%= print_user_and_time(c) %>
+          <small><%= c.print_time %></small>
+        </div>
+        <p class="mb-1"><%=c.content%></p>
+      </div>
+    <% end %>
+  </div>
+
+  <br>
+  <p>Leave a comment: </p>
+  <%= form_for @new_comment do |f| %>
+    <%= f.text_field :content %>
+    <input type="hidden" name="delivery_request_id" value="<%=@delivery_request.id%>">
+    <% if @community_member %>
+      <input type="hidden" name="community_member_id" value="<%=@community_member.id%>">
+    <% end %>
+    <%= f.submit 'Post', class: "btn btn-primary" %>
+  <% end %>
+
+</div>

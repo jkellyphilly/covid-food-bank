@@ -1,38 +1,61 @@
-<h1>Welcome to the community.</h1>
+<div class="jumbotron">
+  <h1 class="display-4">Welcome to the community.</h1>
+  <%= new_delivery_request_wording %>
+</div>
 
-<%= new_delivery_request_wording %>
+<div class="container">
+  <h1>Unconfirmed Deliveries</h1>
 
-<h2>Unconfirmed Deliveries: </h2>
-<% @pending_delivery_requests.each do |dr| %>
-  <%= print_delivery_title(dr) %>
-  <ul>
-    <li>Member requesting: <%= link_to dr.community_member.name, community_member_path(dr.community_member) %></li>
-    <li>Requested items: <%= dr.items %></li>
-    <li>Requested delivery date: <%= dr.requested_date %></li>
-    <%= include_sign_up_option(dr) %>
-  </ul>
-<% end %>
+  <div class="card-columns">
+    <% @pending_delivery_requests.each do |dr| %>
+        <div class="card" style="width: 22rem;">
+          <div class="card-body">
+            <%= print_delivery_title(dr) %>
+            <h6 class="card-subtitle mb-2 text-muted">Member requesting: <%= link_to dr.community_member.name, community_member_path(dr.community_member) %></h6>
+            <p class="card-text">Requested items: <%= dr.items %></p>
+            <p class="card-text">Requested delivery date: <%= dr.requested_date %></p>
+            <%= include_sign_up_option(dr) %>
+          </div>
+        </div>
+    <% end %>
+  </div>
 
-<h2>Confirmed Deliveries: </h2>
-<% @confirmed_delivery_requests.each do |dr| %>
-  <%= print_delivery_title(dr) %>
-  <ul>
-    <li>Member requesting: <%= link_to dr.community_member.name, community_member_path(dr.community_member) %></li>
-    <li>Requested items: <%= dr.items %></li>
-    <li>Requested delivery date: <%= dr.requested_date %></li>
-    <li>Volunteer: <%= link_to dr.volunteer_name, volunteer_path(dr.volunteer) %></li>
-    <li>Route: <%= link_to "Route \##{dr.delivery_route.id}", volunteer_delivery_route_path(dr.volunteer, dr.delivery_route) %></li>
-  </ul>
-<% end %>
+  <br>
+  <h1>Confirmed Deliveries</h1>
 
-<h2>Completed Deliveries: </h2>
-<% @completed_delivery_requests.each do |dr| %>
-  <%= print_delivery_title(dr) %>
-  <ul>
-    <li>Member requesting: <%= link_to dr.community_member.name, community_member_path(dr.community_member) %></li>
-    <li>Requested items: <%= dr.items %></li>
-    <li>Requested delivery date: <%= dr.requested_date %></li>
-    <li>Volunteer: <%= link_to dr.volunteer_name, volunteer_path(dr.volunteer) %></li>
-    <li>Route: <%= link_to "Route \##{dr.delivery_route.id}", volunteer_delivery_route_path(dr.volunteer, dr.delivery_route) %></li>
-  </ul>
-<% end %>
+  <div class="card-columns">
+    <% @confirmed_delivery_requests.each do |dr| %>
+      <div class="card" style="width: 22rem">
+        <div class="card-body">
+          <%= print_delivery_title(dr) %>
+          <h6 class="card-subtitle mb-2 text-muted">Member requesting: <%= link_to dr.community_member.name, community_member_path(dr.community_member) %></h6>
+          <p class="card-text">Requested items: <%= dr.items %></p>
+          <p class="card-text">Requested delivery date: <%= dr.requested_date %></p>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">Volunteer: <%= link_to dr.volunteer_name, volunteer_path(dr.volunteer) %> on <%= link_to "Route \##{dr.delivery_route.id}", volunteer_delivery_route_path(dr.volunteer, dr.delivery_route) %></small>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <br>
+  <h1>Completed Deliveries</h1>
+
+  <div class="card-columns">
+    <% @completed_delivery_requests.each do |dr| %>
+      <div class="card" style="width: 22rem">
+        <div class="card-body">
+          <%= print_delivery_title(dr) %>
+          <h6 class="card-subtitle mb-2 text-muted">Member requesting: <%= link_to dr.community_member.name, community_member_path(dr.community_member) %></h6>
+          <p class="card-text">Requested items: <%= dr.items %></p>
+          <p class="card-text">Requested delivery date: <%= dr.requested_date %></p>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">Volunteer: <%= link_to dr.volunteer_name, volunteer_path(dr.volunteer) %> on <%= link_to "Route \##{dr.delivery_route.id}", volunteer_delivery_route_path(dr.volunteer, dr.delivery_route) %></small>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+</div>
