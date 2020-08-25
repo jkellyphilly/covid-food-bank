@@ -1,20 +1,28 @@
-<h1><%=@community_member.name %></h1>
+<div class="container">
+  <br>
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-4"><%=@community_member.name %></h1>
+      <p class="lead">Username: <%=@community_member.username%></p>
+    </div>
+  </div>
 
-<h4>Username: <%=@community_member.username%></h4>
+  <h2>Contact Info</h2>
 
-<h2>Contact Info</h2>
-<ul>
-  <li>Address: <%=@community_member.address%></li>
-  <li>Email: <%=@community_member.email%></li>
-  <li>Phone number: <%=@community_member.phone_number%></li>
-  <li>Allergies: <%=@community_member.allergies%></li>
-</ul>
-<br>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Address: <%=@community_member.address%></li>
+    <li class="list-group-item">Email: <%=@community_member.email%></li>
+    <li class="list-group-item">Phone number: <%=@community_member.phone_number%></li>
+    <li class="list-group-item">Allergies: <%=@community_member.allergies%></li>
+  </ul>
+  <br>
 
-<%= include_view_deliveries_member(@community_member) %>
+  <%= include_view_deliveries_member(@community_member) %>
 
-<%= include_edit_option_member(@community_member) %>
+  <%= include_edit_option_member(@community_member) %>
 
-<%= include_todays_confirmed_deliveries(@community_member) %>
+  <%= include_todays_confirmed_deliveries(@community_member) %>
 
-<%= include_todays_completed_deliveries(@community_member) %>
+  <%= include_todays_completed_deliveries(@community_member) %>
+
+</div>
