@@ -1,7 +1,10 @@
-<h1>New delivery request</h1>
+<div class="container">
+  <br>
+  <h1>New delivery request</h1>
 
-<% if @delivery_request.errors.any? %>
-  <%= render partial: "helpers/error_fields", locals: {object: @delivery_request} %>
-<% end %>
+  <% if @delivery_request.errors.any? %>
+    <%= render partial: "helpers/error_fields", locals: {object: @delivery_request} %>
+  <% end %>
 
-<%= render partial: 'delivery_request_form', locals: {dr: @delivery_request} %>
+  <%= render partial: 'delivery_request_form', locals: {dr: @delivery_request} %>
+</div>

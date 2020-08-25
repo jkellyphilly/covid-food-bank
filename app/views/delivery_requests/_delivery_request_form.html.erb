@@ -1,7 +1,11 @@
 <%= form_for dr do |f| %>
-  <%= f.label "What do you need?"%>
-  <%= f.text_field :items %> <br>
-  <%= f.label "When would you like this delivered?" %>
-  <%= f.text_field :requested_date %> <br>
-  <%= f.submit %>
+  <div class="form-group">
+    <%= f.label "What do you need?"%>
+    <%= f.text_field :items, class: "form-control", placeholder: "i.e. grapes, eggs, etc." %>
+  </div>
+  <div class="form-group">
+    <%= f.label "When would you like this delivered?" %>
+    <%= f.text_field :requested_date, class: "form-control", placeholder: "Please enter in MM/DD/YYYY format" %>
+  </div>
+  <%= f.submit class: "btn btn-primary" %>
 <% end %>
