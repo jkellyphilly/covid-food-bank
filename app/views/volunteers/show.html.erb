@@ -1,24 +1,31 @@
-<h1><%=@volunteer.name %></h1>
+<div class="container">
+  <br>
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-4"><%=@volunteer.name %></h1>
+      <p class="lead">Username: <%=@volunteer.username%></p>
+    </div>
+  </div>
+  <h2>Contact Info</h2>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Email: <%=@volunteer.email%></li>
+    <li class="list-group-item">Phone number: <%=@volunteer.phone_number%></li>
+  </ul>
+  <br>
 
-<h2>Username: <%=@volunteer.username%></h2>
+  <h2>Upcoming Routes</h2>
+  <div class="card-columns">
+    <% @volunteer.upcoming_delivery_routes.each do |route| %>
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Route ID #<%= route.id %></h5>
+          <p class="card-text">Route date: <%=route.estimated_delivery_date%></p>
+          <%= link_to "View Route", volunteer_delivery_route_path(@volunteer, route), class: "btn btn-primary" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
 
-<h2>Contact Info</h2>
-<ul>
-  <li>Email: <%=@volunteer.email%></li>
-  <li>Phone number: <%=@volunteer.phone_number%></li>
-</ul>
-<br>
-
-<h2>Upcoming Routes</h2>
-<ul>
-  <% @volunteer.upcoming_delivery_routes.each do |route| %>
-    <li><%= link_to "Route ID \##{route.id}", volunteer_delivery_route_path(@volunteer, route) %></li>
-    <li>Route date: <%=route.estimated_delivery_date%></li>
-    <br>
-  <% end %>
-</ul>
-
-<%= link_to "View all routes", volunteer_delivery_routes_path(@volunteer)%>
-
-<br>
-<%= include_edit_option_volunteer(@volunteer) %>
+  <%= link_to "View all routes", volunteer_delivery_routes_path(@volunteer), class: "btn btn-info"%>
+  <%= include_edit_option_volunteer(@volunteer) %>
+</div>
