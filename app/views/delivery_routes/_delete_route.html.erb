@@ -1,5 +1,5 @@
 <%= form_tag volunteer_delivery_route_path(vol, route) do %>
   <input id="hidden" type="hidden" name="_method" value="delete">
   <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-  <%= submit_tag "Delete this Route" %>
+  <%= submit_tag "Delete this Route", class: "btn btn-danger" %>
 <% end %>
