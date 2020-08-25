@@ -1,9 +1,13 @@
-<h1>Sign up to be a member of our community!</h1>
+<div class="container">
+  <br>
+  <h1>Sign up to be a member of our community!</h1>
+  <br>
+  <% if @community_member.errors.any? %>
+    <%= render partial: "helpers/error_fields", locals: {object: @community_member} %>
+  <% end %>
 
-<% if @community_member.errors.any? %>
-  <%= render partial: "helpers/error_fields", locals: {object: @community_member} %>
-<% end %>
-
-<div id="new_community_member_form">
-  <%= render partial: "helpers/info_form", locals: {user: @community_member} %>
+  <h4>We'll never share your information with anyone.</h4>
+  <div id="new_community_member_form">
+    <%= render partial: "helpers/info_form", locals: {user: @community_member} %>
+  </div>
 </div>
