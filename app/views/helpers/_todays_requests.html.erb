@@ -1,5 +1,11 @@
-<% requests.each do |rq| %>
-  <li> <%= link_to "Delivery Request ID \##{rq.id}", delivery_request_path(rq) %> </li>
-  <li> Items: <%= rq.items %></li>
-  <br>
-<% end %>
+<div class="card-columns">
+  <% requests.each do |dr| %>
+      <div class="card" style="width: 22rem;">
+        <div class="card-body">
+          <%= print_delivery_title(dr) %>
+          <h6 class="card-subtitle mb-2 text-muted">Member requesting: <%= link_to dr.community_member.name, community_member_path(dr.community_member) %></h6>
+          <p class="card-text">Requested items: <%= dr.items %></p>
+        </div>
+      </div>
+  <% end %>
+</div>
