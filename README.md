@@ -20,7 +20,7 @@ Sign up for a new member/volunteer profile (or log in if you already have a prof
 
 Note: you can also sign up/log in with your Github account!
 
-For a more thorough explanation of how to use this app, check out this demo: https://www.youtube.com/watch?v=JtzQ6qJr1lk
+For a more thorough explanation of how to use this app, check out this demo: https://youtu.be/-8GDth1KX_o
 
 ## Development
 
