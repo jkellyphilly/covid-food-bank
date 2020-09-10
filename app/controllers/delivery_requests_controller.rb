@@ -6,6 +6,7 @@ class DeliveryRequestsController < ApplicationController
   before_action :require_edit_scenario, only: [:edit]
 
   def index
+    LoadDeliveryRequestsJob.perform_now
     if params[:community_member_id]
       # If we have community_member_id key in params, then we only want to show
       # the pending/confirmed/completed delivery requests for that member
